@@ -30,7 +30,7 @@
   <packaging>bundle</packaging>
   <name>ph-xmldsig</name>
   <description>Wrapper library to handle XMLDsig more easily</description>
-  <url>http://repo.phloc.com/apidocs/phloc-xmldsig/${project.version}</url>
+  <url>https://github.com/phax/ph-xmldsig</url>
   
   <licenses>
     <license>
