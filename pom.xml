@@ -60,6 +60,11 @@
       <url>http://www.helger.com</url>
     </developer>
   </developers>
+  
+  <properties>
+    <!-- Must be below 1.50 for compatibility with AS2 lib -->
+    <bc.version>1.49</bc.version>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -85,13 +90,13 @@
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk15on</artifactId>
-      <version>1.51</version>
+      <version>${bc.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcmail-jdk15on</artifactId>
-      <version>1.51</version>
+      <version>${bc.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
