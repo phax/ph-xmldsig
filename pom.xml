@@ -63,7 +63,7 @@
   
   <properties>
     <!-- Must be below 1.50 for compatibility with AS2 lib -->
-    <bc.version>1.49</bc.version>
+    <bc.version>1.51</bc.version>
   </properties>
 
   <dependencies>
