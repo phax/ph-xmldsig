@@ -1,7 +1,6 @@
-ph-xmldsig
-==========
+#ph-xmldsig
 
-Small wrapper around XMLDsig stuff
+Small wrapper around XMLDsig stuff using Apach Santuario.
 
 #Maven usage
 Add the following to your pom.xml to use this artifact:
@@ -12,3 +11,7 @@ Add the following to your pom.xml to use this artifact:
   <version>1.1.0</version>
 </dependency>
 ```
+
+---
+
+On Twitter: <a href="https://twitter.com/philiphelger">Follow @philiphelger</a>
