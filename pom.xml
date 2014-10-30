@@ -62,7 +62,6 @@
   </developers>
   
   <properties>
-    <!-- Must be below 1.50 for compatibility with AS2 lib -->
     <bc.version>1.51</bc.version>
   </properties>
 
@@ -70,7 +69,7 @@
     <dependency>
       <groupId>com.helger</groupId>
       <artifactId>ph-commons</artifactId>
-      <version>5.1.0</version>
+      <version>5.2.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.santuario</groupId>
