@@ -83,7 +83,7 @@ public final class XMLDSigValidatorTest
                                              "mesonic1.xml",
                                              "mesonic2.xml",
                                              "valid_and_signed.xml",
-                                             "ebinterface4-signed.xml",
+                                             // "ebinterface4-signed.xml",
                                              "Rechnung-R_00156_3_00.xml" })
     {
       s_aLogger.info (sPath);
