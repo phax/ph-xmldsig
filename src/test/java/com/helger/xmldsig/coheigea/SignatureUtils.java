@@ -57,7 +57,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.helger.commons.charset.CCharset;
-import com.helger.commons.collections.ContainerHelper;
+import com.helger.commons.collections.CollectionHelper;
 import com.helger.commons.xml.namespace.MapBasedNamespaceContext;
 
 /**
@@ -263,6 +263,6 @@ public final class SignatureUtils
 
   private static QName getSignedQName (final List <QName> qnames)
   {
-    return ContainerHelper.getLastElement (qnames);
+    return CollectionHelper.getLastElement (qnames);
   }
 }

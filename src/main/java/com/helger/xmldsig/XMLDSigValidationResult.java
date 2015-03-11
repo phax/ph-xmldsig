@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotations.Nonempty;
 import com.helger.commons.annotations.ReturnsMutableCopy;
-import com.helger.commons.collections.ContainerHelper;
+import com.helger.commons.collections.CollectionHelper;
 import com.helger.commons.state.IValidityIndicator;
 import com.helger.commons.string.ToStringGenerator;
 
@@ -58,7 +58,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
 
     m_bValidOverall = false;
     m_bSignatureValid = true;
-    m_aInvalidReferences = ContainerHelper.newList (aInvalidReferences);
+    m_aInvalidReferences = CollectionHelper.newList (aInvalidReferences);
   }
 
   public boolean isValid ()
@@ -88,7 +88,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
   @ReturnsMutableCopy
   public List <Integer> getInvalidReferenceIndices ()
   {
-    return ContainerHelper.newList (m_aInvalidReferences);
+    return CollectionHelper.newList (m_aInvalidReferences);
   }
 
   @Override

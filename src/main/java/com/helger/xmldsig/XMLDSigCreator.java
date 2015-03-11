@@ -46,11 +46,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import com.helger.commons.annotations.OverrideOnDemand;
-import com.helger.commons.collections.ContainerHelper;
+import com.helger.commons.collections.CollectionHelper;
 
 /**
  * Utility class for applying a signature to ebInterface documents.
- * 
+ *
  * @author Philip Helger
  */
 @Immutable
@@ -70,7 +70,7 @@ public class XMLDSigCreator
   @OverrideOnDemand
   protected List <Transform> createTransformList (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
   {
-    return ContainerHelper.<Transform> newUnmodifiableList (aSignatureFactory.newTransform (Transform.ENVELOPED,
+    return CollectionHelper.<Transform> newUnmodifiableList (aSignatureFactory.newTransform (Transform.ENVELOPED,
                                                                                             (TransformParameterSpec) null));
   }
 
@@ -91,7 +91,7 @@ public class XMLDSigCreator
 
   /**
    * Apply an XMLDSig onto the passed document.
-   * 
+   *
    * @param aPrivateKey
    *        The private key used for signing. May not be <code>null</code>.
    * @param aCertificate
@@ -140,7 +140,7 @@ public class XMLDSigCreator
     // Create the SignedInfo.
     final SignedInfo aSignedInfo = aSignatureFactory.newSignedInfo (createCanonicalizationMethod (aSignatureFactory),
                                                                     createSignatureMethod (aSignatureFactory),
-                                                                    ContainerHelper.<Reference> newUnmodifiableList (aReference));
+                                                                    CollectionHelper.<Reference> newUnmodifiableList (aReference));
 
     // Create the KeyInfo containing the X509Data.
     final KeyInfoFactory aKeyInfoFactory = aSignatureFactory.getKeyInfoFactory ();
@@ -154,7 +154,7 @@ public class XMLDSigCreator
     final KeyValue aKeyValue = aKeyInfoFactory.newKeyValue (aCertificate.getPublicKey ());
 
     // Collect certificate and key value in key info
-    final KeyInfo aKeyInfo = aKeyInfoFactory.newKeyInfo (ContainerHelper.<XMLStructure> newUnmodifiableList (aX509Data,
+    final KeyInfo aKeyInfo = aKeyInfoFactory.newKeyInfo (CollectionHelper.<XMLStructure> newUnmodifiableList (aX509Data,
                                                                                                              aKeyValue));
 
     // Create the XMLSignature, but don't sign it yet.
