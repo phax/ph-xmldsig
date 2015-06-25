@@ -45,8 +45,8 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import com.helger.commons.annotations.OverrideOnDemand;
-import com.helger.commons.collections.CollectionHelper;
+import com.helger.commons.annotation.OverrideOnDemand;
+import com.helger.commons.collection.CollectionHelper;
 
 /**
  * Utility class for applying a signature to ebInterface documents.

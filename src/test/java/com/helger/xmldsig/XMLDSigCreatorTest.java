@@ -45,8 +45,8 @@ import org.w3c.dom.Document;
 
 import com.helger.commons.CGlobal;
 import com.helger.commons.io.file.iterate.FileSystemRecursiveIterator;
-import com.helger.commons.xml.serialize.DOMReader;
-import com.helger.commons.xml.serialize.XMLWriter;
+import com.helger.commons.xml.serialize.read.DOMReader;
+import com.helger.commons.xml.serialize.write.XMLWriter;
 
 /**
  * Test class for class {@link XMLDSigCreator}

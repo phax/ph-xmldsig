@@ -57,7 +57,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.helger.commons.charset.CCharset;
-import com.helger.commons.collections.CollectionHelper;
+import com.helger.commons.collection.CollectionHelper;
 import com.helger.commons.xml.namespace.MapBasedNamespaceContext;
 
 /**

@@ -18,7 +18,7 @@ package com.helger.xmldsig.config;
 
 import javax.annotation.Nonnull;
 
-import com.helger.commons.annotations.IsSPIImplementation;
+import com.helger.commons.annotation.IsSPIImplementation;
 import com.helger.commons.thirdparty.ELicense;
 import com.helger.commons.thirdparty.IThirdPartyModule;
 import com.helger.commons.thirdparty.IThirdPartyModuleProviderSPI;

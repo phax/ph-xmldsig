@@ -31,8 +31,8 @@ import org.xml.sax.SAXException;
 import com.helger.commons.io.file.iterate.FileSystemRecursiveIterator;
 import com.helger.commons.io.resource.ClassPathResource;
 import com.helger.commons.xml.sax.DoNothingSAXErrorHandler;
-import com.helger.commons.xml.serialize.DOMReader;
-import com.helger.commons.xml.serialize.DOMReaderSettings;
+import com.helger.commons.xml.serialize.read.DOMReader;
+import com.helger.commons.xml.serialize.read.DOMReaderSettings;
 
 /**
  * Test class for class {@link XMLDSigValidator}
