@@ -24,7 +24,7 @@ import org.apache.xml.security.stax.securityEvent.SecurityEvent;
 import org.apache.xml.security.stax.securityEvent.SecurityEventConstants.Event;
 import org.apache.xml.security.stax.securityEvent.SecurityEventListener;
 
-public class TestSecurityEventListener implements SecurityEventListener
+public final class TestSecurityEventListener implements SecurityEventListener
 {
   private final List <SecurityEvent> events = new ArrayList <SecurityEvent> ();
 
