@@ -63,14 +63,14 @@ import com.helger.commons.xml.namespace.MapBasedNamespaceContext;
 /**
  * Some utility methods for signing/verifying documents
  */
-public final class SignatureUtils
+public final class SignatureHelper
 {
   static
   {
     Init.init ();
   }
 
-  private SignatureUtils ()
+  private SignatureHelper ()
   {}
 
   @Nonnull
