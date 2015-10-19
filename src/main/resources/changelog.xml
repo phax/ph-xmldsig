@@ -18,6 +18,12 @@
 
 -->
 <changelog xmlns="http://www.helger.com/xsd/changelog/1.0" version="1.0" component="ph-xmldsig">
+  <release date="2015-10-19" version="2.0.2" />
+  <entry date="2015-10-19" category="tech" action="update">
+    <change>
+      <text locale="en">Updated to Bouncy Castle 1.53</text>
+    </change>
+  </entry>
   <release date="2015-07-21" version="2.0.1" />
   <entry date="2015-07-21" category="tech" action="update">
     <change>
