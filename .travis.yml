@@ -12,7 +12,7 @@ IXE60/rHxd8Sz4zu1F+bSFKspw2fhAr79GLThY6uEVCfDDtyKddqMw3HJq9K5DxUlhSfJwB1osABpCWt
 rAGjQ7tMLSQvxD3oqz4ymOJ8cpRAKFlxts0KCqSGfroqAqcbJ08+0aWJTCkwKOiBL0E5zXC2N6LTelSTtwK4uZ7z4kZsi4="
 
 jdk:
-  - openjdk6
+  - oraclejdk8
   
 cache:
   directories:
