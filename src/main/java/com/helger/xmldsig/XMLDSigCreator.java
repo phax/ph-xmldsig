@@ -23,7 +23,6 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
-import javax.xml.crypto.XMLStructure;
 import javax.xml.crypto.dsig.CanonicalizationMethod;
 import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.crypto.dsig.Reference;
@@ -70,8 +69,8 @@ public class XMLDSigCreator
   @OverrideOnDemand
   protected List <Transform> createTransformList (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
   {
-    return CollectionHelper.<Transform> newUnmodifiableList (aSignatureFactory.newTransform (Transform.ENVELOPED,
-                                                                                            (TransformParameterSpec) null));
+    return CollectionHelper.makeUnmodifiable (aSignatureFactory.newTransform (Transform.ENVELOPED,
+                                                                              (TransformParameterSpec) null));
   }
 
   @Nonnull
@@ -119,8 +118,7 @@ public class XMLDSigCreator
       throw new IllegalArgumentException ("Document element has no children!");
 
     // Check that the document does not contain another Signature element
-    final NodeList aNodeList = aDocument.getElementsByTagNameNS (XMLSignature.XMLNS,
-                                                                 XMLDSigSetup.ELEMENT_SIGNATURE);
+    final NodeList aNodeList = aDocument.getElementsByTagNameNS (XMLSignature.XMLNS, XMLDSigSetup.ELEMENT_SIGNATURE);
     if (aNodeList.getLength () > 0)
       throw new IllegalArgumentException ("Document already contains an XMLDSig Signature element!");
 
@@ -140,7 +138,7 @@ public class XMLDSigCreator
     // Create the SignedInfo.
     final SignedInfo aSignedInfo = aSignatureFactory.newSignedInfo (createCanonicalizationMethod (aSignatureFactory),
                                                                     createSignatureMethod (aSignatureFactory),
-                                                                    CollectionHelper.<Reference> newUnmodifiableList (aReference));
+                                                                    CollectionHelper.makeUnmodifiable (aReference));
 
     // Create the KeyInfo containing the X509Data.
     final KeyInfoFactory aKeyInfoFactory = aSignatureFactory.getKeyInfoFactory ();
@@ -154,8 +152,7 @@ public class XMLDSigCreator
     final KeyValue aKeyValue = aKeyInfoFactory.newKeyValue (aCertificate.getPublicKey ());
 
     // Collect certificate and key value in key info
-    final KeyInfo aKeyInfo = aKeyInfoFactory.newKeyInfo (CollectionHelper.<XMLStructure> newUnmodifiableList (aX509Data,
-                                                                                                             aKeyValue));
+    final KeyInfo aKeyInfo = aKeyInfoFactory.newKeyInfo (CollectionHelper.makeUnmodifiable (aX509Data, aKeyValue));
 
     // Create the XMLSignature, but don't sign it yet.
     final XMLSignature aXMLSignature = aSignatureFactory.newXMLSignature (aSignedInfo, aKeyInfo);
