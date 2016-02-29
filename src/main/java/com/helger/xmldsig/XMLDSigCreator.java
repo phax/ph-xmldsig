@@ -18,7 +18,6 @@ package com.helger.xmldsig;
 
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -44,8 +43,11 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.OverrideOnDemand;
 import com.helger.commons.collection.CollectionHelper;
+import com.helger.commons.collection.ext.CommonsArrayList;
+import com.helger.commons.collection.ext.ICommonsList;
 
 /**
  * Utility class for applying a signature to ebInterface documents.
@@ -106,12 +108,9 @@ public class XMLDSigCreator
                             @Nonnull final X509Certificate aCertificate,
                             @Nonnull final Document aDocument) throws Exception
   {
-    if (aPrivateKey == null)
-      throw new NullPointerException ("privateKey");
-    if (aCertificate == null)
-      throw new NullPointerException ("certificate");
-    if (aDocument == null)
-      throw new NullPointerException ("document");
+    ValueEnforcer.notNull (aPrivateKey, "privateKey");
+    ValueEnforcer.notNull (aCertificate, "certificate");
+    ValueEnforcer.notNull (aDocument, "document");
     if (aDocument.getDocumentElement () == null)
       throw new IllegalArgumentException ("Document is missing a document element");
     if (aDocument.getDocumentElement ().getChildNodes ().getLength () == 0)
@@ -143,9 +142,9 @@ public class XMLDSigCreator
     // Create the KeyInfo containing the X509Data.
     final KeyInfoFactory aKeyInfoFactory = aSignatureFactory.getKeyInfoFactory ();
     // The X509 certificate
-    final List <Object> aX509Content = new ArrayList <Object> ();
-    aX509Content.add (aCertificate.getSubjectX500Principal ().getName ());
-    aX509Content.add (aCertificate);
+    final ICommonsList <Object> aX509Content = new CommonsArrayList <> (aCertificate.getSubjectX500Principal ()
+                                                                                    .getName (),
+                                                                        aCertificate);
     final X509Data aX509Data = aKeyInfoFactory.newX509Data (aX509Content);
 
     // The public key itself

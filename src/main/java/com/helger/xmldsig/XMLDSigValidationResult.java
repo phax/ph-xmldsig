@@ -23,7 +23,8 @@ import javax.annotation.Nonnull;
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.Nonempty;
 import com.helger.commons.annotation.ReturnsMutableCopy;
-import com.helger.commons.collection.CollectionHelper;
+import com.helger.commons.collection.ext.CommonsArrayList;
+import com.helger.commons.collection.ext.ICommonsList;
 import com.helger.commons.state.IValidityIndicator;
 import com.helger.commons.string.ToStringGenerator;
 
@@ -36,7 +37,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
 {
   private final boolean m_bValidOverall;
   private final boolean m_bSignatureValid;
-  private final List <Integer> m_aInvalidReferences;
+  private final ICommonsList <Integer> m_aInvalidReferences;
 
   private XMLDSigValidationResult ()
   {
@@ -58,7 +59,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
 
     m_bValidOverall = false;
     m_bSignatureValid = true;
-    m_aInvalidReferences = CollectionHelper.newList (aInvalidReferences);
+    m_aInvalidReferences = new CommonsArrayList <> (aInvalidReferences);
   }
 
   public boolean isValid ()
@@ -86,9 +87,9 @@ public final class XMLDSigValidationResult implements IValidityIndicator
    */
   @Nonnull
   @ReturnsMutableCopy
-  public List <Integer> getInvalidReferenceIndices ()
+  public ICommonsList <Integer> getInvalidReferenceIndices ()
   {
-    return CollectionHelper.newList (m_aInvalidReferences);
+    return new CommonsArrayList <> (m_aInvalidReferences);
   }
 
   @Override
