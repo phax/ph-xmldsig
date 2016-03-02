@@ -16,7 +16,6 @@
  */
 package com.helger.xmldsig.coheigea;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.xml.security.exceptions.XMLSecurityException;
@@ -24,9 +23,12 @@ import org.apache.xml.security.stax.securityEvent.SecurityEvent;
 import org.apache.xml.security.stax.securityEvent.SecurityEventConstants.Event;
 import org.apache.xml.security.stax.securityEvent.SecurityEventListener;
 
+import com.helger.commons.collection.ext.CommonsArrayList;
+import com.helger.commons.collection.ext.ICommonsList;
+
 public final class TestSecurityEventListener implements SecurityEventListener
 {
-  private final List <SecurityEvent> events = new ArrayList <SecurityEvent> ();
+  private final ICommonsList <SecurityEvent> events = new CommonsArrayList <> ();
 
   @Override
   public void registerSecurityEvent (final SecurityEvent securityEvent) throws XMLSecurityException
@@ -38,26 +40,18 @@ public final class TestSecurityEventListener implements SecurityEventListener
   public <T> T getSecurityEvent (final Event securityEvent)
   {
     for (final SecurityEvent event : events)
-    {
       if (event.getSecurityEventType () == securityEvent)
-      {
         return (T) event;
-      }
-    }
     return null;
   }
 
   @SuppressWarnings ("unchecked")
-  public <T> List <T> getSecurityEvents (final Event securityEvent)
+  public <T> ICommonsList <T> getSecurityEvents (final Event securityEvent)
   {
-    final List <T> foundEvents = new ArrayList <T> ();
+    final ICommonsList <T> foundEvents = new CommonsArrayList <> ();
     for (final SecurityEvent event : events)
-    {
       if (event.getSecurityEventType () == securityEvent)
-      {
         foundEvents.add ((T) event);
-      }
-    }
     return foundEvents;
   }
 

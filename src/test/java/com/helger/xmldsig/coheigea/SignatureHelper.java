@@ -20,7 +20,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.security.Key;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,6 +57,8 @@ import org.w3c.dom.NodeList;
 
 import com.helger.commons.charset.CCharset;
 import com.helger.commons.collection.CollectionHelper;
+import com.helger.commons.collection.ext.CommonsArrayList;
+import com.helger.commons.collection.ext.ICommonsList;
 import com.helger.commons.xml.namespace.MapBasedNamespaceContext;
 
 /**
@@ -135,7 +136,9 @@ public final class SignatureHelper
    * for Java. It finds a list of QNames via XPath and uses the DOM API to mark
    * them as having an "Id".
    */
-  public static void verifyUsingDOM (final Document document, final List <QName> namesToSign, final X509Certificate cert) throws Exception
+  public static void verifyUsingDOM (final Document document,
+                                     final List <QName> namesToSign,
+                                     final X509Certificate cert) throws Exception
   {
     final XPathFactory xpf = XPathFactory.newInstance ();
     final XPath xpath = xpf.newXPath ();
@@ -176,7 +179,7 @@ public final class SignatureHelper
   {
     // Set up the Configuration
     final XMLSecurityProperties properties = new XMLSecurityProperties ();
-    final List <XMLSecurityConstants.Action> actions = new ArrayList <XMLSecurityConstants.Action> ();
+    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList <> ();
     actions.add (XMLSecurityConstants.SIGNATURE);
     properties.setActions (actions);
 
@@ -213,7 +216,7 @@ public final class SignatureHelper
   {
     // Set up the Configuration
     final XMLSecurityProperties properties = new XMLSecurityProperties ();
-    final List <XMLSecurityConstants.Action> actions = new ArrayList <XMLSecurityConstants.Action> ();
+    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList <> ();
     actions.add (XMLSecurityConstants.SIGNATURE);
     properties.setActions (actions);
 

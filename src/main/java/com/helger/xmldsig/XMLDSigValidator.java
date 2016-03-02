@@ -16,9 +16,7 @@
  */
 package com.helger.xmldsig;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
@@ -37,6 +35,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.helger.commons.ValueEnforcer;
+import com.helger.commons.collection.ext.CommonsArrayList;
+import com.helger.commons.collection.ext.ICommonsList;
 import com.helger.xmldsig.keyselect.X509KeySelector;
 
 /**
@@ -110,7 +110,7 @@ public final class XMLDSigValidator
       return XMLDSigValidationResult.createSignatureError ();
 
     // Check the validation status of each Reference.
-    final List <Integer> aInvalidReferences = new ArrayList <Integer> ();
+    final ICommonsList <Integer> aInvalidReferences = new CommonsArrayList <> ();
     final Iterator <?> it = aSignature.getSignedInfo ().getReferences ().iterator ();
     for (int nIndex = 0; it.hasNext (); nIndex++)
     {
