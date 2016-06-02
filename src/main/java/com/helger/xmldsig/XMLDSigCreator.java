@@ -44,6 +44,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import com.helger.commons.ValueEnforcer;
+import com.helger.commons.annotation.CodingStyleguideUnaware;
 import com.helger.commons.annotation.OverrideOnDemand;
 import com.helger.commons.collection.CollectionHelper;
 import com.helger.commons.collection.ext.CommonsArrayList;
@@ -69,6 +70,7 @@ public class XMLDSigCreator
 
   @Nonnull
   @OverrideOnDemand
+  @CodingStyleguideUnaware
   protected List <Transform> createTransformList (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
   {
     return CollectionHelper.makeUnmodifiable (aSignatureFactory.newTransform (Transform.ENVELOPED,
