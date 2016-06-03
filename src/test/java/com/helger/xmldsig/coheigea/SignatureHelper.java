@@ -83,7 +83,7 @@ public final class SignatureHelper
     return aNC;
   }
 
-  /**
+  /*
    * Sign the document using the DOM API of Apache Santuario - XML Security for
    * Java. It signs a list of QNames that it finds in the Document via XPath.
    */
@@ -131,7 +131,7 @@ public final class SignatureHelper
     }
   }
 
-  /**
+  /*
    * Verify the document using the DOM API of Apache Santuario - XML Security
    * for Java. It finds a list of QNames via XPath and uses the DOM API to mark
    * them as having an "Id".
@@ -167,7 +167,7 @@ public final class SignatureHelper
     Assert.assertTrue (signature.checkSignatureValue (cert));
   }
 
-  /**
+  /*
    * Sign the document using the StAX API of Apache Santuario - XML Security for
    * Java.
    */
@@ -206,7 +206,7 @@ public final class SignatureHelper
     return baos;
   }
 
-  /**
+  /*
    * Verify the document using the StAX API of Apache Santuario - XML Security
    * for Java.
    */
