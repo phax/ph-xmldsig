@@ -59,7 +59,7 @@ import com.helger.commons.charset.CCharset;
 import com.helger.commons.collection.CollectionHelper;
 import com.helger.commons.collection.ext.CommonsArrayList;
 import com.helger.commons.collection.ext.ICommonsList;
-import com.helger.commons.xml.namespace.MapBasedNamespaceContext;
+import com.helger.xml.namespace.MapBasedNamespaceContext;
 
 /**
  * Some utility methods for signing/verifying documents
