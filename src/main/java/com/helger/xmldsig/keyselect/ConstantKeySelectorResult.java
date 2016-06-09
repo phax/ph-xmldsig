@@ -26,11 +26,11 @@ import com.helger.commons.string.ToStringGenerator;
 
 /**
  * Most simple implementation of {@link KeySelectorResult} using a constant key.
- * 
+ *
  * @author Philip Helger
  */
 @Immutable
-public final class ConstantKeySelectorResult implements KeySelectorResult
+public class ConstantKeySelectorResult implements KeySelectorResult
 {
   private final Key m_aKey;
 

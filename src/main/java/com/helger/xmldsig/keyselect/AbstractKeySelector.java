@@ -18,19 +18,24 @@ package com.helger.xmldsig.keyselect;
 
 import javax.annotation.Nonnull;
 import javax.xml.crypto.KeySelector;
-import javax.xml.crypto.dsig.SignatureMethod;
+
+import org.apache.xml.security.signature.XMLSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class for {@link KeySelector} implementations.
- * 
+ *
  * @author Philip Helger
  */
 public abstract class AbstractKeySelector extends KeySelector
 {
+  private static final Logger s_aLogger = LoggerFactory.getLogger (AbstractKeySelector.class);
+
   /**
    * Checks if a JCA/JCE public key algorithm name is compatible with the
    * specified signature algorithm URI.
-   * 
+   *
    * @param sAlgURI
    *        The requested algorithm URI.
    * @param sAlgName
@@ -40,11 +45,16 @@ public abstract class AbstractKeySelector extends KeySelector
   protected static boolean algorithmEquals (@Nonnull final String sAlgURI, @Nonnull final String sAlgName)
   {
     if (sAlgName.equalsIgnoreCase ("DSA"))
-      return sAlgURI.equalsIgnoreCase (SignatureMethod.DSA_SHA1);
+      return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_DSA);
     if (sAlgName.equalsIgnoreCase ("RSA"))
-      return sAlgURI.equalsIgnoreCase (SignatureMethod.RSA_SHA1);
+      return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
     if (sAlgName.equalsIgnoreCase ("EC"))
-      return sAlgURI.equalsIgnoreCase ("http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256");
+      return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA256);
+    s_aLogger.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
+                    sAlgName +
+                    "') and signature algorithm URI ('" +
+                    sAlgURI +
+                    "')");
     return false;
   }
 }

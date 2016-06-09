@@ -113,8 +113,7 @@ public class XMLDSigCreator
     ValueEnforcer.notNull (aPrivateKey, "privateKey");
     ValueEnforcer.notNull (aCertificate, "certificate");
     ValueEnforcer.notNull (aDocument, "document");
-    if (aDocument.getDocumentElement () == null)
-      throw new IllegalArgumentException ("Document is missing a document element");
+    ValueEnforcer.notNull (aDocument.getDocumentElement (), "Document is missing a document element");
     if (aDocument.getDocumentElement ().getChildNodes ().getLength () == 0)
       throw new IllegalArgumentException ("Document element has no children!");
 

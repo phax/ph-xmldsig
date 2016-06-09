@@ -23,7 +23,6 @@ import javax.annotation.concurrent.Immutable;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
-import org.apache.xml.security.Init;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
@@ -39,7 +38,7 @@ public final class XMLDSigSetup
   static
   {
     // Init Santuario
-    Init.init ();
+    org.apache.xml.security.Init.init ();
 
     // Required for SHA256withECDSA Signature
     Security.addProvider (new BouncyCastleProvider ());
