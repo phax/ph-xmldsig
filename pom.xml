@@ -91,6 +91,10 @@
       <artifactId>ph-commons</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.helger</groupId>
+      <artifactId>ph-security</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.santuario</groupId>
       <artifactId>xmlsec</artifactId>
     </dependency>

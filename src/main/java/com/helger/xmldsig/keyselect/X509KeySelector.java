@@ -29,9 +29,11 @@ import javax.xml.crypto.XMLStructure;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 
+import com.helger.security.keystore.ConstantKeySelectorResult;
+
 /**
  * Most simple key selector, using the first contained X509Certificate.
- * 
+ *
  * @author Philip Helger
  */
 public final class X509KeySelector extends AbstractKeySelector
