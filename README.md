@@ -1,9 +1,26 @@
 #ph-xmldsig
 
-Small wrapper around XMLDsig stuff using Apach Santuario.
+Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apache.org/).
 
-Versions <= 1.1.x are compatible with ph-commons < 6.0
-Versions >= 2.0.0 are compatible with ph-commons >= 6.0
+
+# News and noteworthy
+
+  * v3.0.2
+    * Updated to xmlsec 2.0.8
+    * Updated to BouncyCastle 1.55
+  * v3.0.1 - 2016-07-15
+    * Binds to ph-commons 8.2.x
+    * Updated to xmlsec 2.0.7
+  * v3.0.0 - 2016-06-10
+    * Requires now JDK 8
+    * Binds to ph-commons 8.x
+    * Updated to xmlsec 2.0.6
+  * v2.0.2 - 2015-10-19   
+    * Updated to BouncyCastle 1.53
+  * v2.0.1 - 2015-07-21
+    * Updated to xmlsec 2.0.5
+  * v2.0.0 - 2015-07-02
+    * Binds to ph-commons 6.x     
 
 #Maven usage
 Add the following to your pom.xml to use this artifact:
@@ -11,7 +28,7 @@ Add the following to your pom.xml to use this artifact:
 <dependency>
   <groupId>com.helger</groupId>
   <artifactId>ph-xmldsig</artifactId>
-  <version>2.0.2</version>
+  <version>3.0.1</version>
 </dependency>
 ```
 
