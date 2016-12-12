@@ -2,10 +2,9 @@
 
 Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apache.org/).
 
-
 # News and noteworthy
 
-  * v3.0.2
+  * v3.0.2 - 2016-12-12
     * Updated to xmlsec 2.0.8
     * Updated to BouncyCastle 1.55
   * v3.0.1 - 2016-07-15
@@ -28,7 +27,7 @@ Add the following to your pom.xml to use this artifact:
 <dependency>
   <groupId>com.helger</groupId>
   <artifactId>ph-xmldsig</artifactId>
-  <version>3.0.1</version>
+  <version>3.0.2</version>
 </dependency>
 ```
 

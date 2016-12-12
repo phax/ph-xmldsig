@@ -18,6 +18,13 @@
 
 -->
 <changelog xmlns="http://www.helger.com/xsd/changelog/1.0" version="1.0" component="ph-xmldsig">
+  <release date="2016-12-12" version="3.0.2" />
+  <entry date="2016-12-05" category="tech" action="update">
+    <change>
+      <text locale="en">Updated to Apache Santuario 2.0.8</text>
+    </change>
+  </entry>
+  <release date="2016-07-15" version="3.0.1" />
   <entry date="2016-06-20" category="tech" action="update">
     <change>
       <text locale="en">Updated to Apache Santuario 2.0.7</text>
