@@ -3,7 +3,8 @@
 Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apache.org/).
 
 # News and noteworthy
-
+  * v3.0.3
+    * Updated to BouncyCastle 1.56
   * v3.0.2 - 2016-12-12
     * Updated to xmlsec 2.0.8
     * Updated to BouncyCastle 1.55
