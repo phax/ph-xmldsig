@@ -39,89 +39,88 @@ public final class XmlReaderToWriter
     writer.flush ();
   }
 
-  public static void write (final XMLStreamReader xmlr, final XMLStreamWriter writer) throws XMLStreamException
+  public static void write (final XMLStreamReader xmlr, final XMLStreamWriter aWriter) throws XMLStreamException
   {
     switch (xmlr.getEventType ())
     {
       case XMLStreamConstants.START_ELEMENT:
-        final String localName = xmlr.getLocalName ();
-        final String namespaceURI = xmlr.getNamespaceURI ();
-        if (namespaceURI != null && namespaceURI.length () > 0)
+        final String sLocalName = xmlr.getLocalName ();
+        final String sNamespaceURI = xmlr.getNamespaceURI ();
+        if (sNamespaceURI != null && sNamespaceURI.length () > 0)
         {
-          final String prefix = xmlr.getPrefix ();
-          if (prefix != null)
-            writer.writeStartElement (prefix, localName, namespaceURI);
+          final String sPrefix = xmlr.getPrefix ();
+          if (sPrefix != null)
+            aWriter.writeStartElement (sPrefix, sLocalName, sNamespaceURI);
           else
-            writer.writeStartElement (namespaceURI, localName);
+            aWriter.writeStartElement (sNamespaceURI, sLocalName);
         }
         else
         {
-          writer.writeStartElement (localName);
+          aWriter.writeStartElement (sLocalName);
         }
 
         for (int i = 0, len = xmlr.getNamespaceCount (); i < len; i++)
         {
-          final String prefix = xmlr.getNamespacePrefix (i);
-          if (prefix == null)
-            writer.writeDefaultNamespace (xmlr.getNamespaceURI (i));
+          final String sPrefix = xmlr.getNamespacePrefix (i);
+          if (sPrefix == null)
+            aWriter.writeDefaultNamespace (xmlr.getNamespaceURI (i));
           else
-            writer.writeNamespace (prefix, xmlr.getNamespaceURI (i));
+            aWriter.writeNamespace (sPrefix, xmlr.getNamespaceURI (i));
         }
 
         for (int i = 0, len = xmlr.getAttributeCount (); i < len; i++)
         {
-          final String attUri = xmlr.getAttributeNamespace (i);
-
-          if (attUri != null && attUri.length () > 0)
+          final String sAttUri = xmlr.getAttributeNamespace (i);
+          if (sAttUri != null && sAttUri.length () > 0)
           {
-            final String prefix = xmlr.getAttributePrefix (i);
-            if (prefix != null)
-              writer.writeAttribute (prefix, attUri, xmlr.getAttributeLocalName (i), xmlr.getAttributeValue (i));
+            final String sPrefix = xmlr.getAttributePrefix (i);
+            if (sPrefix != null)
+              aWriter.writeAttribute (sPrefix, sAttUri, xmlr.getAttributeLocalName (i), xmlr.getAttributeValue (i));
             else
-              writer.writeAttribute (attUri, xmlr.getAttributeLocalName (i), xmlr.getAttributeValue (i));
+              aWriter.writeAttribute (sAttUri, xmlr.getAttributeLocalName (i), xmlr.getAttributeValue (i));
           }
           else
           {
-            writer.writeAttribute (xmlr.getAttributeLocalName (i), xmlr.getAttributeValue (i));
+            aWriter.writeAttribute (xmlr.getAttributeLocalName (i), xmlr.getAttributeValue (i));
           }
         }
         break;
       case XMLStreamConstants.END_ELEMENT:
-        writer.writeEndElement ();
+        aWriter.writeEndElement ();
         break;
       case XMLStreamConstants.SPACE:
       case XMLStreamConstants.CHARACTERS:
-        final char [] text = new char [xmlr.getTextLength ()];
-        xmlr.getTextCharacters (0, text, 0, xmlr.getTextLength ());
-        writer.writeCharacters (text, 0, text.length);
+        final char [] aTextChars = new char [xmlr.getTextLength ()];
+        xmlr.getTextCharacters (0, aTextChars, 0, xmlr.getTextLength ());
+        aWriter.writeCharacters (aTextChars, 0, aTextChars.length);
         break;
       case XMLStreamConstants.PROCESSING_INSTRUCTION:
-        writer.writeProcessingInstruction (xmlr.getPITarget (), xmlr.getPIData ());
+        aWriter.writeProcessingInstruction (xmlr.getPITarget (), xmlr.getPIData ());
         break;
       case XMLStreamConstants.CDATA:
-        writer.writeCData (xmlr.getText ());
+        aWriter.writeCData (xmlr.getText ());
         break;
       case XMLStreamConstants.COMMENT:
-        writer.writeComment (xmlr.getText ());
+        aWriter.writeComment (xmlr.getText ());
         break;
       case XMLStreamConstants.ENTITY_REFERENCE:
-        writer.writeEntityRef (xmlr.getLocalName ());
+        aWriter.writeEntityRef (xmlr.getLocalName ());
         break;
       case XMLStreamConstants.START_DOCUMENT:
-        final String encoding = xmlr.getCharacterEncodingScheme ();
-        final String version = xmlr.getVersion ();
+        final String sEncoding = xmlr.getCharacterEncodingScheme ();
+        final String sVersion = xmlr.getVersion ();
 
-        if (encoding != null && version != null)
-          writer.writeStartDocument (encoding, version);
+        if (sEncoding != null && sVersion != null)
+          aWriter.writeStartDocument (sEncoding, sVersion);
         else
-          if (version != null)
-            writer.writeStartDocument (xmlr.getVersion ());
+          if (sVersion != null)
+            aWriter.writeStartDocument (xmlr.getVersion ());
         break;
       case XMLStreamConstants.END_DOCUMENT:
-        writer.writeEndDocument ();
+        aWriter.writeEndDocument ();
         break;
       case XMLStreamConstants.DTD:
-        writer.writeDTD (xmlr.getText ());
+        aWriter.writeDTD (xmlr.getText ());
         break;
     }
   }

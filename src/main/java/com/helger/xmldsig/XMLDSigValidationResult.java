@@ -59,7 +59,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
 
     m_bValidOverall = false;
     m_bSignatureValid = true;
-    m_aInvalidReferences = new CommonsArrayList <> (aInvalidReferences);
+    m_aInvalidReferences = new CommonsArrayList<> (aInvalidReferences);
   }
 
   public boolean isValid ()
@@ -89,7 +89,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
   @ReturnsMutableCopy
   public ICommonsList <Integer> getInvalidReferenceIndices ()
   {
-    return new CommonsArrayList <> (m_aInvalidReferences);
+    return new CommonsArrayList<> (m_aInvalidReferences);
   }
 
   @Override
@@ -98,7 +98,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
     return new ToStringGenerator (this).append ("valid", m_bValidOverall)
                                        .append ("signatureValid", m_bSignatureValid)
                                        .append ("invalidReferences", m_aInvalidReferences)
-                                       .toString ();
+                                       .getToString ();
   }
 
   /**

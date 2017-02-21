@@ -18,6 +18,7 @@ package com.helger.xmldsig.coheigea;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.security.cert.X509Certificate;
 import java.util.List;
@@ -55,7 +56,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.helger.commons.charset.CCharset;
 import com.helger.commons.collection.CollectionHelper;
 import com.helger.commons.collection.ext.CommonsArrayList;
 import com.helger.commons.collection.ext.ICommonsList;
@@ -179,7 +179,7 @@ public final class SignatureHelper
   {
     // Set up the Configuration
     final XMLSecurityProperties properties = new XMLSecurityProperties ();
-    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList <> ();
+    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList<> ();
     actions.add (XMLSecurityConstants.SIGNATURE);
     properties.setActions (actions);
 
@@ -193,9 +193,9 @@ public final class SignatureHelper
       properties.addSignaturePart (securePart);
     }
 
-    final OutboundXMLSec outboundXMLSec = XMLSec.getOutboundXMLSec (properties);
-    final ByteArrayOutputStream baos = new ByteArrayOutputStream ();
-    final XMLStreamWriter xmlStreamWriter = outboundXMLSec.processOutMessage (baos, CCharset.CHARSET_UTF_8);
+    final OutboundXMLSec aOutboundXMLSec = XMLSec.getOutboundXMLSec (properties);
+    final ByteArrayOutputStream aBAOS = new ByteArrayOutputStream ();
+    final XMLStreamWriter xmlStreamWriter = aOutboundXMLSec.processOutMessage (aBAOS, StandardCharsets.UTF_8.name ());
 
     final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance ();
     final XMLStreamReader xmlStreamReader = xmlInputFactory.createXMLStreamReader (inputStream);
@@ -203,7 +203,7 @@ public final class SignatureHelper
     XmlReaderToWriter.writeAll (xmlStreamReader, xmlStreamWriter);
     xmlStreamWriter.close ();
 
-    return baos;
+    return aBAOS;
   }
 
   /*
@@ -216,7 +216,7 @@ public final class SignatureHelper
   {
     // Set up the Configuration
     final XMLSecurityProperties properties = new XMLSecurityProperties ();
-    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList <> ();
+    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList<> ();
     actions.add (XMLSecurityConstants.SIGNATURE);
     properties.setActions (actions);
 
