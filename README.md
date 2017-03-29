@@ -1,4 +1,4 @@
-#ph-xmldsig
+# ph-xmldsig
 
 Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apache.org/).
 
@@ -22,7 +22,7 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
   * v2.0.0 - 2015-07-02
     * Binds to ph-commons 6.x     
 
-#Maven usage
+# Maven usage
 Add the following to your pom.xml to use this artifact:
 ```
 <dependency>

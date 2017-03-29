@@ -111,7 +111,7 @@ public final class XMLDSigCreatorTest
         assertTrue (XMLDSigValidator.containsSignature (aDoc));
 
         if (false)
-          System.out.println (XMLWriter.getXMLString (aDoc));
+          System.out.println (XMLWriter.getNodeAsString (aDoc));
 
         // Validate the signature
         assertTrue (XMLDSigValidator.validateSignature (aDoc).isValid ());
