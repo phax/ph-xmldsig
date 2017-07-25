@@ -44,7 +44,7 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 
 import com.helger.commons.CGlobal;
-import com.helger.commons.io.file.iterate.FileSystemRecursiveIterator;
+import com.helger.commons.io.file.FileSystemRecursiveIterator;
 import com.helger.xml.serialize.read.DOMReader;
 import com.helger.xml.serialize.write.XMLWriter;
 
