@@ -37,13 +37,13 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
   public static final IThirdPartyModule SANTUARIO = new ThirdPartyModule ("Apache Santuario",
                                                                           "The Apache Software Foundation",
                                                                           ELicense.APACHE2,
-                                                                          new Version (2, 0, 7),
+                                                                          new Version (2, 0, 8),
                                                                           "http://santuario.apache.org/");
 
   public static final IThirdPartyModule BOUNCY_CASTLE = new ThirdPartyModule ("Bouncy Castle",
                                                                               "Legion of the Bouncy Castle",
                                                                               ELicense.MIT,
-                                                                              new Version (1, 56),
+                                                                              new Version (1, 58),
                                                                               "https://www.bouncycastle.org/");
 
   @Nonnull
