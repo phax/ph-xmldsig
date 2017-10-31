@@ -90,7 +90,8 @@ public final class XMLDSigCreatorTest
   public void testSign () throws Exception
   {
     // Use BouncyCastle as a security provider
-    Security.addProvider (new BouncyCastleProvider ());
+    if (Security.getProvider (BouncyCastleProvider.PROVIDER_NAME) == null)
+      Security.addProvider (new BouncyCastleProvider ());
 
     // Create a dummy in-memory certificate
     final KeyPairGenerator aKeyPairGenerator = KeyPairGenerator.getInstance ("RSA");

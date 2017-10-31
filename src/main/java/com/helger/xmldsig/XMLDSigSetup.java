@@ -41,7 +41,8 @@ public final class XMLDSigSetup
     org.apache.xml.security.Init.init ();
 
     // Required for SHA256withECDSA Signature
-    Security.addProvider (new BouncyCastleProvider ());
+    if (Security.getProvider (BouncyCastleProvider.PROVIDER_NAME) == null)
+      Security.addProvider (new BouncyCastleProvider ());
   }
 
   private XMLDSigSetup ()
