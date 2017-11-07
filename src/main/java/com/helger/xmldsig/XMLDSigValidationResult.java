@@ -16,6 +16,7 @@
  */
 package com.helger.xmldsig;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -33,7 +34,7 @@ import com.helger.commons.string.ToStringGenerator;
  *
  * @author Philip Helger
  */
-public final class XMLDSigValidationResult implements IValidityIndicator
+public class XMLDSigValidationResult implements IValidityIndicator, Serializable
 {
   private final boolean m_bValidOverall;
   private final boolean m_bSignatureValid;
@@ -59,17 +60,12 @@ public final class XMLDSigValidationResult implements IValidityIndicator
 
     m_bValidOverall = false;
     m_bSignatureValid = true;
-    m_aInvalidReferences = new CommonsArrayList<> (aInvalidReferences);
+    m_aInvalidReferences = new CommonsArrayList <> (aInvalidReferences);
   }
 
   public boolean isValid ()
   {
     return m_bValidOverall;
-  }
-
-  public boolean isInvalid ()
-  {
-    return !m_bValidOverall;
   }
 
   /**
@@ -89,7 +85,7 @@ public final class XMLDSigValidationResult implements IValidityIndicator
   @ReturnsMutableCopy
   public ICommonsList <Integer> getInvalidReferenceIndices ()
   {
-    return new CommonsArrayList<> (m_aInvalidReferences);
+    return new CommonsArrayList <> (m_aInvalidReferences);
   }
 
   @Override

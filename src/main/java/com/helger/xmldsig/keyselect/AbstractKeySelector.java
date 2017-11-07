@@ -23,6 +23,8 @@ import org.apache.xml.security.signature.XMLSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.helger.commons.string.ToStringGenerator;
+
 /**
  * Base class for {@link KeySelector} implementations.
  *
@@ -42,7 +44,7 @@ public abstract class AbstractKeySelector extends KeySelector
    *        The provided algorithm name from a public key.
    * @return <code>true</code> if the name matches the URI.
    */
-  protected static boolean algorithmEquals (@Nonnull final String sAlgURI, @Nonnull final String sAlgName)
+  public static boolean algorithmEquals (@Nonnull final String sAlgURI, @Nonnull final String sAlgName)
   {
     if (sAlgName.equalsIgnoreCase ("DSA"))
       return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_DSA);
@@ -50,11 +52,18 @@ public abstract class AbstractKeySelector extends KeySelector
       return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
     if (sAlgName.equalsIgnoreCase ("EC"))
       return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA256);
+
     s_aLogger.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
                     sAlgName +
                     "') and signature algorithm URI ('" +
                     sAlgURI +
                     "')");
     return false;
+  }
+
+  @Override
+  public String toString ()
+  {
+    return new ToStringGenerator (this).getToString ();
   }
 }
