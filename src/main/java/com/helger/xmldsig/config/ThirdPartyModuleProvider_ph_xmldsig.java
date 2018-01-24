@@ -43,7 +43,7 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
   public static final IThirdPartyModule BOUNCY_CASTLE = new ThirdPartyModule ("Bouncy Castle",
                                                                               "Legion of the Bouncy Castle",
                                                                               ELicense.MIT,
-                                                                              new Version (1, 58),
+                                                                              new Version (1, 59),
                                                                               "https://www.bouncycastle.org/");
 
   @Nonnull
