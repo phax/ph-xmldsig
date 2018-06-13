@@ -58,6 +58,8 @@ import com.helger.commons.collection.impl.ICommonsList;
 @Immutable
 public class XMLDSigCreator
 {
+  public static final String DEFAULT_NS_PREFIX = "dsig";
+
   public XMLDSigCreator ()
   {}
 
@@ -166,7 +168,7 @@ public class XMLDSigCreator
                                                                aDocument.getDocumentElement ().getFirstChild ());
 
     // The namespace prefix to be used for the signed XML
-    aDOMSignContext.setDefaultNamespacePrefix ("dsig");
+    aDOMSignContext.setDefaultNamespacePrefix (DEFAULT_NS_PREFIX);
 
     // Marshal, generate, and sign the enveloped signature.
     aXMLSignature.sign (aDOMSignContext);
