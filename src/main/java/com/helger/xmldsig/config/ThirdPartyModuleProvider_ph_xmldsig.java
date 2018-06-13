@@ -40,15 +40,9 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
                                                                           new Version (2, 1, 2),
                                                                           "http://santuario.apache.org/");
 
-  public static final IThirdPartyModule BOUNCY_CASTLE = new ThirdPartyModule ("Bouncy Castle",
-                                                                              "Legion of the Bouncy Castle",
-                                                                              ELicense.MIT,
-                                                                              new Version (1, 59),
-                                                                              "https://www.bouncycastle.org/");
-
   @Nonnull
   public IThirdPartyModule [] getAllThirdPartyModules ()
   {
-    return new IThirdPartyModule [] { SANTUARIO, BOUNCY_CASTLE };
+    return new IThirdPartyModule [] { SANTUARIO };
   }
 }

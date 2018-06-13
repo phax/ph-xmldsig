@@ -26,7 +26,6 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.Security;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
@@ -37,12 +36,12 @@ import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.X509v1CertificateBuilder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.cert.jcajce.JcaX509v1CertificateBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
+import com.helger.bc.PBCProvider;
 import com.helger.commons.CGlobal;
 import com.helger.commons.io.file.FileSystemRecursiveIterator;
 import com.helger.xml.serialize.read.DOMReader;
@@ -67,7 +66,7 @@ public final class XMLDSigCreatorTest
   {
     final PublicKey aPublicKey = kp.getPublic ();
     final PrivateKey aPrivateKey = kp.getPrivate ();
-    final ContentSigner aContentSigner = new JcaContentSignerBuilder ("SHA1withRSA").setProvider (BouncyCastleProvider.PROVIDER_NAME)
+    final ContentSigner aContentSigner = new JcaContentSignerBuilder ("SHA1withRSA").setProvider (PBCProvider.getProvider ())
                                                                                     .build (aPrivateKey);
 
     // Form yesterday
@@ -83,16 +82,12 @@ public final class XMLDSigCreatorTest
                                                                                    aPublicKey);
     final X509CertificateHolder aCertHolder = aCertBuilder.build (aContentSigner);
     // Convert to JCA X509Certificate
-    return new JcaX509CertificateConverter ().getCertificate (aCertHolder);
+    return new JcaX509CertificateConverter ().setProvider (PBCProvider.getProvider ()).getCertificate (aCertHolder);
   }
 
   @Test
   public void testSign () throws Exception
   {
-    // Use BouncyCastle as a security provider
-    if (Security.getProvider (BouncyCastleProvider.PROVIDER_NAME) == null)
-      Security.addProvider (new BouncyCastleProvider ());
-
     // Create a dummy in-memory certificate
     final KeyPairGenerator aKeyPairGenerator = KeyPairGenerator.getInstance ("RSA");
     aKeyPairGenerator.initialize (512);

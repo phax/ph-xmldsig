@@ -16,14 +16,11 @@
  */
 package com.helger.xmldsig;
 
-import java.security.Security;
-
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
  * General setup for XMLDSig handling
@@ -39,10 +36,6 @@ public final class XMLDSigSetup
   {
     // Init Santuario
     org.apache.xml.security.Init.init ();
-
-    // Required for SHA256withECDSA Signature
-    if (Security.getProvider (BouncyCastleProvider.PROVIDER_NAME) == null)
-      Security.addProvider (new BouncyCastleProvider ());
   }
 
   private XMLDSigSetup ()

@@ -4,11 +4,9 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
 
 # News and noteworthy
 
-* v4.0.2 - work in progress
-    * Updated to xmlsec 2.1.2
 * v4.0.1 - work in progress
     * Updated to BouncyCastle 1.59
-    * Updated to xmlsec 2.1.1
+    * Updated to xmlsec 2.1.2
     * Fixed OSGI ServiceProvider configuration
 * v4.0.0 - 2017-11-07
     * Updated to BouncyCastle 1.58
