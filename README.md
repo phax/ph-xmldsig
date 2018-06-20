@@ -4,7 +4,7 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
 
 # News and noteworthy
 
-* v4.1.0 - work in progress
+* v4.1.0 - 2018-06-20
     * Updated to BouncyCastle 1.59
     * Updated to xmlsec 2.1.2
     * Fixed OSGI ServiceProvider configuration
@@ -36,7 +36,7 @@ Add the following to your pom.xml to use this artifact:
 <dependency>
   <groupId>com.helger</groupId>
   <artifactId>ph-xmldsig</artifactId>
-  <version>4.0.0</version>
+  <version>4.1.0</version>
 </dependency>
 ```
 
