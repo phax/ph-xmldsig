@@ -4,6 +4,8 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
 
 # News and noteworthy
 
+* v4.1.1 - work in progress
+    * Extracted `XMLSignature createXMLSignature` in `XMLDSigCreator` for overloading
 * v4.1.0 - 2018-06-20
     * Updated to BouncyCastle 1.59
     * Updated to xmlsec 2.1.2

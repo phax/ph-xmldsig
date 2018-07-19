@@ -94,35 +94,11 @@ public class XMLDSigCreator
     return aSignatureFactory.newSignatureMethod (SignatureMethod.RSA_SHA1, (SignatureMethodParameterSpec) null);
   }
 
-  /**
-   * Apply an XMLDSig onto the passed document.
-   *
-   * @param aPrivateKey
-   *        The private key used for signing. May not be <code>null</code>.
-   * @param aCertificate
-   *        The certificate to be used. May not be <code>null</code>.
-   * @param aDocument
-   *        The document to be signed. The signature will always be the first
-   *        child element of the document element. The document may not contains
-   *        any disg:Signature element. This element is inserted manually.
-   * @throws Exception
-   *         In case something goes wrong
-   */
-  public void applyXMLDSig (@Nonnull final PrivateKey aPrivateKey,
-                            @Nonnull final X509Certificate aCertificate,
-                            @Nonnull final Document aDocument) throws Exception
+  @Nonnull
+  @OverrideOnDemand
+  public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate) throws Exception
   {
-    ValueEnforcer.notNull (aPrivateKey, "privateKey");
     ValueEnforcer.notNull (aCertificate, "certificate");
-    ValueEnforcer.notNull (aDocument, "document");
-    ValueEnforcer.notNull (aDocument.getDocumentElement (), "Document is missing a document element");
-    if (aDocument.getDocumentElement ().getChildNodes ().getLength () == 0)
-      throw new IllegalArgumentException ("Document element has no children!");
-
-    // Check that the document does not contain another Signature element
-    final NodeList aNodeList = aDocument.getElementsByTagNameNS (XMLSignature.XMLNS, XMLDSigSetup.ELEMENT_SIGNATURE);
-    if (aNodeList.getLength () > 0)
-      throw new IllegalArgumentException ("Document already contains an XMLDSig Signature element!");
 
     // Create a DOM XMLSignatureFactory that will be used to generate the
     // enveloped signature.
@@ -157,7 +133,41 @@ public class XMLDSigCreator
     final KeyInfo aKeyInfo = aKeyInfoFactory.newKeyInfo (CollectionHelper.makeUnmodifiable (aX509Data, aKeyValue));
 
     // Create the XMLSignature, but don't sign it yet.
-    final XMLSignature aXMLSignature = aSignatureFactory.newXMLSignature (aSignedInfo, aKeyInfo);
+    return aSignatureFactory.newXMLSignature (aSignedInfo, aKeyInfo);
+  }
+
+  /**
+   * Apply an XMLDSig onto the passed document.
+   *
+   * @param aPrivateKey
+   *        The private key used for signing. May not be <code>null</code>.
+   * @param aCertificate
+   *        The certificate to be used. May not be <code>null</code>.
+   * @param aDocument
+   *        The document to be signed. The signature will always be the first
+   *        child element of the document element. The document may not contains
+   *        any disg:Signature element. This element is inserted manually.
+   * @throws Exception
+   *         In case something goes wrong
+   */
+  public void applyXMLDSig (@Nonnull final PrivateKey aPrivateKey,
+                            @Nonnull final X509Certificate aCertificate,
+                            @Nonnull final Document aDocument) throws Exception
+  {
+    ValueEnforcer.notNull (aPrivateKey, "privateKey");
+    ValueEnforcer.notNull (aCertificate, "certificate");
+    ValueEnforcer.notNull (aDocument, "document");
+    ValueEnforcer.notNull (aDocument.getDocumentElement (), "Document is missing a document element");
+    if (aDocument.getDocumentElement ().getChildNodes ().getLength () == 0)
+      throw new IllegalArgumentException ("Document element has no children!");
+
+    // Check that the document does not contain another Signature element
+    final NodeList aNodeList = aDocument.getElementsByTagNameNS (XMLSignature.XMLNS, XMLDSigSetup.ELEMENT_SIGNATURE);
+    if (aNodeList.getLength () > 0)
+      throw new IllegalArgumentException ("Document already contains an XMLDSig Signature element!");
+
+    // Create the XMLSignature, but don't sign it yet.
+    final XMLSignature aXMLSignature = createXMLSignature (aCertificate);
 
     // Create a DOMSignContext and specify the RSA PrivateKey and
     // location of the resulting XMLSignature's parent element.
