@@ -32,7 +32,7 @@ import com.helger.commons.string.ToStringGenerator;
  */
 public abstract class AbstractKeySelector extends KeySelector
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (AbstractKeySelector.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (AbstractKeySelector.class);
 
   /**
    * Checks if a JCA/JCE public key algorithm name is compatible with the
@@ -53,7 +53,7 @@ public abstract class AbstractKeySelector extends KeySelector
     if (sAlgName.equalsIgnoreCase ("EC"))
       return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA256);
 
-    s_aLogger.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
+    LOGGER.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
                     sAlgName +
                     "') and signature algorithm URI ('" +
                     sAlgURI +

@@ -41,7 +41,7 @@ import com.helger.xml.serialize.read.DOMReaderSettings;
  */
 public final class XMLDSigValidatorTest
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (XMLDSigValidatorTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (XMLDSigValidatorTest.class);
 
   @Ignore
   @Test
@@ -86,7 +86,7 @@ public final class XMLDSigValidatorTest
                                              // "ebinterface4-signed.xml",
                                              "Rechnung-R_00156_3_00.xml" })
     {
-      s_aLogger.info (sPath);
+      LOGGER.info (sPath);
 
       // Read document
       final Document aDoc = DOMReader.readXMLDOM (new ClassPathResource ("xml-signed/" + sPath));

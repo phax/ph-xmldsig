@@ -47,7 +47,7 @@ import com.helger.xmldsig.keyselect.X509KeySelector;
 @Immutable
 public final class XMLDSigValidator
 {
-  private static final Logger s_aLogger = LoggerFactory.getLogger (XMLDSigValidator.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger (XMLDSigValidator.class);
 
   private XMLDSigValidator ()
   {}
@@ -97,7 +97,7 @@ public final class XMLDSigValidator
     }
     catch (final MarshalException ex)
     {
-      s_aLogger.error ("Failed to read XML signature: " + ex.getClass ().getName () + " - " + ex.getMessage ());
+      LOGGER.error ("Failed to read XML signature: " + ex.getClass ().getName () + " - " + ex.getMessage ());
       return XMLDSigValidationResult.createSignatureError ();
     }
 
