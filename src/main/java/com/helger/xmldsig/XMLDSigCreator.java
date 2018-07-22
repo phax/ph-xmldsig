@@ -46,6 +46,7 @@ import org.w3c.dom.NodeList;
 
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.annotation.OverrideOnDemand;
+import com.helger.commons.annotation.ReturnsMutableCopy;
 import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
 
@@ -64,7 +65,7 @@ public class XMLDSigCreator
 
   @Nullable
   @OverrideOnDemand
-  protected String getReferenceURI ()
+  protected String getDefaultReferenceURI ()
   {
     // "" means sign the whole document
     return "";
@@ -107,16 +108,39 @@ public class XMLDSigCreator
 
   @Nullable
   @OverrideOnDemand
-  protected String getReferenceType ()
+  protected String getDefaultReferenceType () throws Exception
   {
     return null;
   }
 
   @Nullable
   @OverrideOnDemand
-  protected String getReferenceID ()
+  protected String getDefaultReferenceID () throws Exception
   {
     return null;
+  }
+
+  @Nonnull
+  @ReturnsMutableCopy
+  protected Reference createDefaultReference (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  {
+    // Create a Reference to the enveloped document (we are signing the whole
+    // document, so a URI of "" signifies that, and also specify the SHA1 digest
+    // algorithm and the ENVELOPED Transform)
+    return aSignatureFactory.newReference (getDefaultReferenceURI (),
+                                           createDigestMethod (aSignatureFactory),
+                                           createTransformList (aSignatureFactory),
+                                           getDefaultReferenceType (),
+                                           getDefaultReferenceID ());
+  }
+
+  @Nonnull
+  @ReturnsMutableCopy
+  protected ICommonsList <Reference> createReferenceList (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  {
+    final ICommonsList <Reference> ret = new CommonsArrayList <> ();
+    ret.addIfNotNull (createDefaultReference (aSignatureFactory));
+    return ret;
   }
 
   @Nonnull
@@ -157,19 +181,10 @@ public class XMLDSigCreator
     // enveloped signature.
     final XMLSignatureFactory aSignatureFactory = XMLDSigSetup.getXMLSignatureFactory ();
 
-    // Create a Reference to the enveloped document (we are signing the whole
-    // document, so a URI of "" signifies that, and also specify the SHA1 digest
-    // algorithm and the ENVELOPED Transform)
-    final Reference aReference = aSignatureFactory.newReference (getReferenceURI (),
-                                                                 createDigestMethod (aSignatureFactory),
-                                                                 createTransformList (aSignatureFactory),
-                                                                 getReferenceType (),
-                                                                 getReferenceID ());
-
     // Create the SignedInfo.
     final SignedInfo aSignedInfo = aSignatureFactory.newSignedInfo (createCanonicalizationMethod (aSignatureFactory),
                                                                     createSignatureMethod (aSignatureFactory),
-                                                                    new CommonsArrayList <> (aReference));
+                                                                    createReferenceList (aSignatureFactory));
 
     // Create the KeyInfo containing the X509Data.
     final KeyInfoFactory aKeyInfoFactory = aSignatureFactory.getKeyInfoFactory ();
