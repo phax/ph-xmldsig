@@ -39,11 +39,14 @@ import org.bouncycastle.cert.jcajce.JcaX509v1CertificateBuilder;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import com.helger.bc.PBCProvider;
 import com.helger.commons.CGlobal;
 import com.helger.commons.io.file.FileSystemRecursiveIterator;
+import com.helger.commons.io.file.IFileFilter;
 import com.helger.xml.serialize.read.DOMReader;
 import com.helger.xml.serialize.write.XMLWriter;
 
@@ -54,6 +57,8 @@ import com.helger.xml.serialize.write.XMLWriter;
  */
 public final class XMLDSigCreatorTest
 {
+  private static final Logger LOGGER = LoggerFactory.getLogger (XMLDSigCreatorTest.class);
+
   /**
    * Create a new dummy certificate based on the passed key pair
    *
@@ -94,29 +99,29 @@ public final class XMLDSigCreatorTest
     final KeyPair aKeyPair = aKeyPairGenerator.generateKeyPair ();
     final X509Certificate aCert = _createCert (aKeyPair);
 
-    for (final File aFile : new FileSystemRecursiveIterator ("src/test/resources/xml-unsigned"))
-      if (aFile.isFile () && aFile.getName ().endsWith (".xml"))
-      {
-        // Read document
-        final Document aDoc = DOMReader.readXMLDOM (aFile);
-        assertNotNull (aDoc);
+    for (final File aFile : new FileSystemRecursiveIterator ("src/test/resources/xml-unsigned").withFilter (IFileFilter.fileOnly ()
+                                                                                                                       .and (IFileFilter.filenameEndsWith (".xml"))))
+    {
+      // Read document
+      final Document aDoc = DOMReader.readXMLDOM (aFile);
+      assertNotNull (aDoc);
 
-        // Apply the signature
-        assertFalse (XMLDSigValidator.containsSignature (aDoc));
-        new XMLDSigCreator ().applyXMLDSig (aKeyPair.getPrivate (), aCert, aDoc);
-        assertTrue (XMLDSigValidator.containsSignature (aDoc));
+      // Apply the signature
+      assertFalse (XMLDSigValidator.containsSignature (aDoc));
+      new XMLDSigCreator ().applyXMLDSigAsFirstChild (aKeyPair.getPrivate (), aCert, aDoc);
+      assertTrue (XMLDSigValidator.containsSignature (aDoc));
 
-        if (false)
-          System.out.println (XMLWriter.getNodeAsString (aDoc));
+      if (false)
+        LOGGER.info (XMLWriter.getNodeAsString (aDoc));
 
-        // Validate the signature
-        assertTrue (XMLDSigValidator.validateSignature (aDoc).isValid ());
+      // Validate the signature
+      assertTrue (XMLDSigValidator.validateSignature (aDoc).isValid ());
 
-        // Modify the document
-        aDoc.getDocumentElement ().appendChild (aDoc.createTextNode ("text"));
+      // Modify the document
+      aDoc.getDocumentElement ().appendChild (aDoc.createTextNode ("text"));
 
-        // Validate again - must fail
-        assertTrue (XMLDSigValidator.validateSignature (aDoc).isInvalid ());
-      }
+      // Validate again - must fail
+      assertTrue (XMLDSigValidator.validateSignature (aDoc).isInvalid ());
+    }
   }
 }

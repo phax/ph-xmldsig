@@ -218,10 +218,11 @@ public class XMLDSigCreator
    *        any disg:Signature element. This element is inserted manually.
    * @throws Exception
    *         In case something goes wrong
+   * @see #createXMLSignature(X509Certificate)
    */
-  public void applyXMLDSig (@Nonnull final PrivateKey aPrivateKey,
-                            @Nonnull final X509Certificate aCertificate,
-                            @Nonnull final Document aDocument) throws Exception
+  public void applyXMLDSigAsFirstChild (@Nonnull final PrivateKey aPrivateKey,
+                                        @Nonnull final X509Certificate aCertificate,
+                                        @Nonnull final Document aDocument) throws Exception
   {
     ValueEnforcer.notNull (aPrivateKey, "privateKey");
     ValueEnforcer.notNull (aCertificate, "certificate");
