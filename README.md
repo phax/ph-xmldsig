@@ -4,7 +4,7 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
 
 # News and noteworthy
 
-* v4.1.1 - work in progress
+* v4.1.1 - 2018-07-27
     * Extracted `XMLSignature createXMLSignature` in `XMLDSigCreator` for overloading
 * v4.1.0 - 2018-06-20
     * Updated to BouncyCastle 1.59
@@ -38,7 +38,7 @@ Add the following to your pom.xml to use this artifact:
 <dependency>
   <groupId>com.helger</groupId>
   <artifactId>ph-xmldsig</artifactId>
-  <version>4.1.0</version>
+  <version>4.1.1</version>
 </dependency>
 ```
 
