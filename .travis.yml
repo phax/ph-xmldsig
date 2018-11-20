@@ -23,11 +23,11 @@ jobs:
   include:
     - stage: test
       jdk: oraclejdk8
+      script:
+        - mvn test -B -P coverage
       after_success:
         - mvn deploy --settings travis-settings.xml -DskipTests=true -B -P travis-deploy
         - bash <(curl -s https://codecov.io/bash)
-      script:
-        - mvn test -B -P coverage
     - stage: test
       jdk: oraclejdk11
       script:
