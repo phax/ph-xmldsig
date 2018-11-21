@@ -26,7 +26,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.helger.commons.io.file.FileSystemRecursiveIterator;
 import com.helger.commons.io.resource.ClassPathResource;
@@ -52,18 +51,8 @@ public final class XMLDSigValidatorTest
       if (aFile.isFile () && aFile.getName ().endsWith (".xml"))
       {
         // Read document
-        Document aDoc = null;
-        try
-        {
-          aDoc = DOMReader.readXMLDOM (aFile, aDOMRS);
-          assertNotNull (aDoc);
-        }
-        catch (final SAXException ex)
-        {
-          // fall through
-        }
-        if (aDoc == null)
-          continue;
+        final Document aDoc = DOMReader.readXMLDOM (aFile, aDOMRS);
+        assertNotNull (aDoc);
 
         // Validate the signature
         try
@@ -80,11 +69,11 @@ public final class XMLDSigValidatorTest
   public void testSign () throws Exception
   {
     for (final String sPath : new String [] { "valid6-signed.xml",
-                                             "mesonic1.xml",
-                                             "mesonic2.xml",
-                                             "valid_and_signed.xml",
-                                             // "ebinterface4-signed.xml",
-                                             "Rechnung-R_00156_3_00.xml" })
+                                              "mesonic1.xml",
+                                              "mesonic2.xml",
+                                              "valid_and_signed.xml",
+                                              // "ebinterface4-signed.xml",
+                                              "Rechnung-R_00156_3_00.xml" })
     {
       LOGGER.info (sPath);
 
