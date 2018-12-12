@@ -16,6 +16,7 @@
  */
 package com.helger.xmldsig;
 
+import java.security.KeyException;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 import java.util.List;
@@ -60,8 +61,20 @@ public class XMLDSigCreator
 {
   public static final String DEFAULT_NS_PREFIX = "dsig";
 
+  private final XMLSignatureFactory m_aSignatureFactory;
+
   public XMLDSigCreator ()
-  {}
+  {
+    // Create a DOM XMLSignatureFactory that will be used to generate the
+    // enveloped signature.
+    m_aSignatureFactory = XMLDSigSetup.getXMLSignatureFactory ();
+  }
+
+  @Nonnull
+  public final XMLSignatureFactory getSignatureFactory ()
+  {
+    return m_aSignatureFactory;
+  }
 
   @Nullable
   @OverrideOnDemand
@@ -80,9 +93,9 @@ public class XMLDSigCreator
 
   @Nonnull
   @OverrideOnDemand
-  protected DigestMethod createDigestMethod (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected DigestMethod createDigestMethod () throws Exception
   {
-    return aSignatureFactory.newDigestMethod (getDigestMethod (), (DigestMethodParameterSpec) null);
+    return m_aSignatureFactory.newDigestMethod (getDigestMethod (), (DigestMethodParameterSpec) null);
   }
 
   @Nonnull
@@ -94,16 +107,16 @@ public class XMLDSigCreator
 
   @Nonnull
   @OverrideOnDemand
-  protected Transform createDefaultTransform (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected Transform createDefaultTransform () throws Exception
   {
-    return aSignatureFactory.newTransform (getDefaultTransform (), (TransformParameterSpec) null);
+    return m_aSignatureFactory.newTransform (getDefaultTransform (), (TransformParameterSpec) null);
   }
 
   @Nonnull
   @OverrideOnDemand
-  protected List <Transform> createTransformList (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected List <Transform> createTransformList () throws Exception
   {
-    return new CommonsArrayList <> (createDefaultTransform (aSignatureFactory));
+    return new CommonsArrayList <> (createDefaultTransform ());
   }
 
   @Nullable
@@ -122,24 +135,24 @@ public class XMLDSigCreator
 
   @Nonnull
   @ReturnsMutableCopy
-  protected Reference createDefaultReference (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected Reference createDefaultReference () throws Exception
   {
     // Create a Reference to the enveloped document (we are signing the whole
     // document, so a URI of "" signifies that, and also specify the SHA1 digest
     // algorithm and the ENVELOPED Transform)
-    return aSignatureFactory.newReference (getDefaultReferenceURI (),
-                                           createDigestMethod (aSignatureFactory),
-                                           createTransformList (aSignatureFactory),
-                                           getDefaultReferenceType (),
-                                           getDefaultReferenceID ());
+    return m_aSignatureFactory.newReference (getDefaultReferenceURI (),
+                                             createDigestMethod (),
+                                             createTransformList (),
+                                             getDefaultReferenceType (),
+                                             getDefaultReferenceID ());
   }
 
   @Nonnull
   @ReturnsMutableCopy
-  protected ICommonsList <Reference> createReferenceList (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected ICommonsList <Reference> createReferenceList () throws Exception
   {
     final ICommonsList <Reference> ret = new CommonsArrayList <> ();
-    ret.addIfNotNull (createDefaultReference (aSignatureFactory));
+    ret.addIfNotNull (createDefaultReference ());
     return ret;
   }
 
@@ -152,9 +165,9 @@ public class XMLDSigCreator
 
   @Nonnull
   @OverrideOnDemand
-  protected CanonicalizationMethod createCanonicalizationMethod (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected CanonicalizationMethod createCanonicalizationMethod () throws Exception
   {
-    return aSignatureFactory.newCanonicalizationMethod (getCanonicalizationMethod (), (C14NMethodParameterSpec) null);
+    return m_aSignatureFactory.newCanonicalizationMethod (getCanonicalizationMethod (), (C14NMethodParameterSpec) null);
   }
 
   @Nonnull
@@ -166,28 +179,25 @@ public class XMLDSigCreator
 
   @Nonnull
   @OverrideOnDemand
-  protected SignatureMethod createSignatureMethod (@Nonnull final XMLSignatureFactory aSignatureFactory) throws Exception
+  protected SignatureMethod createSignatureMethod () throws Exception
   {
-    return aSignatureFactory.newSignatureMethod (getSignatureMethod (), (SignatureMethodParameterSpec) null);
+    return m_aSignatureFactory.newSignatureMethod (getSignatureMethod (), (SignatureMethodParameterSpec) null);
   }
 
   @Nonnull
-  @OverrideOnDemand
-  public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate) throws Exception
+  public SignedInfo createSignedInfo () throws Exception
   {
-    ValueEnforcer.notNull (aCertificate, "certificate");
-
-    // Create a DOM XMLSignatureFactory that will be used to generate the
-    // enveloped signature.
-    final XMLSignatureFactory aSignatureFactory = XMLDSigSetup.getXMLSignatureFactory ();
-
     // Create the SignedInfo.
-    final SignedInfo aSignedInfo = aSignatureFactory.newSignedInfo (createCanonicalizationMethod (aSignatureFactory),
-                                                                    createSignatureMethod (aSignatureFactory),
-                                                                    createReferenceList (aSignatureFactory));
+    return m_aSignatureFactory.newSignedInfo (createCanonicalizationMethod (),
+                                              createSignatureMethod (),
+                                              createReferenceList ());
+  }
 
+  @Nonnull
+  public KeyInfo createKeyInfo (@Nonnull final X509Certificate aCertificate) throws KeyException
+  {
     // Create the KeyInfo containing the X509Data.
-    final KeyInfoFactory aKeyInfoFactory = aSignatureFactory.getKeyInfoFactory ();
+    final KeyInfoFactory aKeyInfoFactory = m_aSignatureFactory.getKeyInfoFactory ();
 
     // The X509 certificate subject name and the certificate itself
     final ICommonsList <Object> aX509Content = new CommonsArrayList <> (aCertificate.getSubjectX500Principal ()
@@ -199,10 +209,33 @@ public class XMLDSigCreator
     final KeyValue aKeyValue = aKeyInfoFactory.newKeyValue (aCertificate.getPublicKey ());
 
     // Collect certificate and key value in key info
-    final KeyInfo aKeyInfo = aKeyInfoFactory.newKeyInfo (new CommonsArrayList <> (aX509Data, aKeyValue));
+    return aKeyInfoFactory.newKeyInfo (new CommonsArrayList <> (aX509Data, aKeyValue));
+  }
+
+  @Nonnull
+  @OverrideOnDemand
+  public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate) throws Exception
+  {
+    return createXMLSignature (aCertificate, null, null, null);
+  }
+
+  @Nonnull
+  @OverrideOnDemand
+  public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate,
+                                          @Nullable final List <?> aObjects,
+                                          @Nullable final String sID,
+                                          @Nullable final String sSignatureValueID) throws Exception
+  {
+    ValueEnforcer.notNull (aCertificate, "certificate");
+
+    // Create the SignedInfo.
+    final SignedInfo aSignedInfo = createSignedInfo ();
+
+    // Collect certificate and key value in key info
+    final KeyInfo aKeyInfo = createKeyInfo (aCertificate);
 
     // Create the XMLSignature, but don't sign it yet.
-    return aSignatureFactory.newXMLSignature (aSignedInfo, aKeyInfo);
+    return m_aSignatureFactory.newXMLSignature (aSignedInfo, aKeyInfo, aObjects, sID, sSignatureValueID);
   }
 
   /**
