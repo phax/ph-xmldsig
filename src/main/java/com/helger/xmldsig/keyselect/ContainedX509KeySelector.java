@@ -16,6 +16,7 @@
  */
 package com.helger.xmldsig.keyselect;
 
+import java.io.Serializable;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 
@@ -32,11 +33,12 @@ import javax.xml.crypto.dsig.keyinfo.X509Data;
 import com.helger.security.keystore.ConstantKeySelectorResult;
 
 /**
- * Most simple key selector, using the first contained X509Certificate.
+ * Simple key selector, using the first {@link X509Certificate} contained in the
+ * signature to be verified.
  *
  * @author Philip Helger
  */
-public final class X509KeySelector extends AbstractKeySelector
+public final class ContainedX509KeySelector extends AbstractKeySelector implements Serializable
 {
   @Override
   @Nonnull

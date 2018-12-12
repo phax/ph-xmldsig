@@ -37,7 +37,7 @@ import org.w3c.dom.NodeList;
 import com.helger.commons.ValueEnforcer;
 import com.helger.commons.collection.impl.CommonsArrayList;
 import com.helger.commons.collection.impl.ICommonsList;
-import com.helger.xmldsig.keyselect.X509KeySelector;
+import com.helger.xmldsig.keyselect.ContainedX509KeySelector;
 
 /**
  * Utility class for validating XML DSig within ebInterface documents.
@@ -63,7 +63,7 @@ public final class XMLDSigValidator
   @Nonnull
   public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc) throws XMLSignatureException
   {
-    return validateSignature (aDoc, new X509KeySelector ());
+    return validateSignature (aDoc, new ContainedX509KeySelector ());
   }
 
   @Nonnull

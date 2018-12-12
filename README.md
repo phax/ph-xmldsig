@@ -4,6 +4,9 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
 
 # News and noteworthy
 
+* v4.3.0 - work in progress
+    * Extended API
+    * Renamed `X509KeySelector` to `ContainedX509KeySelector`
 * v4.2.0 - 2018-11-22
     * Updated to ph-commons 9.2.0
 * v4.1.1 - 2018-07-27
