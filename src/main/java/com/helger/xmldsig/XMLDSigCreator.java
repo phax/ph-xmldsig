@@ -30,6 +30,7 @@ import javax.xml.crypto.dsig.Reference;
 import javax.xml.crypto.dsig.SignatureMethod;
 import javax.xml.crypto.dsig.SignedInfo;
 import javax.xml.crypto.dsig.Transform;
+import javax.xml.crypto.dsig.XMLObject;
 import javax.xml.crypto.dsig.XMLSignature;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
@@ -222,7 +223,7 @@ public class XMLDSigCreator
   @Nonnull
   @OverrideOnDemand
   public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate,
-                                          @Nullable final List <?> aObjects,
+                                          @Nullable final List <? extends XMLObject> aObjects,
                                           @Nullable final String sID,
                                           @Nullable final String sSignatureValueID) throws Exception
   {
