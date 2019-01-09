@@ -63,21 +63,32 @@ public final class XMLDSigValidator
   @Nonnull
   public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc) throws XMLSignatureException
   {
-    return validateSignature (aDoc, new ContainedX509KeySelector ());
-  }
-
-  @Nonnull
-  public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc,
-                                                           @Nonnull final KeySelector aKeySelector) throws XMLSignatureException
-  {
     ValueEnforcer.notNull (aDoc, "Document");
-    ValueEnforcer.notNull (aKeySelector, "KeySelector");
 
     // Find Signature element.
     final NodeList aSignatureNL = aDoc.getElementsByTagNameNS (XMLSignature.XMLNS, XMLDSigSetup.ELEMENT_SIGNATURE);
     if (aSignatureNL.getLength () != 1)
       throw new IllegalArgumentException ("Cannot find exactly one Signature element");
     final Element aSignatureElement = (Element) aSignatureNL.item (0);
+
+    return validateSignature (aDoc, aSignatureElement);
+  }
+
+  @Nonnull
+  public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc,
+                                                           @Nonnull final Element aSignatureElement) throws XMLSignatureException
+  {
+    return validateSignature (aDoc, aSignatureElement, new ContainedX509KeySelector ());
+  }
+
+  @Nonnull
+  public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc,
+                                                           @Nonnull final Element aSignatureElement,
+                                                           @Nonnull final KeySelector aKeySelector) throws XMLSignatureException
+  {
+    ValueEnforcer.notNull (aDoc, "Document");
+    ValueEnforcer.notNull (aSignatureElement, "SignatureElement");
+    ValueEnforcer.notNull (aKeySelector, "KeySelector");
 
     // Create a DOM XMLSignatureFactory that will be used to validate the
     // enveloped signature.
