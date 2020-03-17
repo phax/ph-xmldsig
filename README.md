@@ -2,10 +2,22 @@
 
 Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apache.org/).
 
+# Maven usage
+
+Add the following to your pom.xml to use this artifact:´
+
+```xml
+<dependency>
+  <groupId>com.helger</groupId>
+  <artifactId>ph-xmldsig</artifactId>
+  <version>4.3.1</version>
+</dependency>
+```
+
 # News and noteworthy
 
-* v4.3.1 - work in progress
-    * Updated to xmlsec 2.1.4
+* v4.3.1 - 2019-03-17
+    * Updated to xmlsec 2.1.5
 * v4.3.0 - 2019-01-15
     * Extended API
     * Renamed `X509KeySelector` to `ContainedX509KeySelector`
@@ -38,18 +50,6 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
     * Updated to xmlsec 2.0.5
 * v2.0.0 - 2015-07-02
     * Binds to ph-commons 6.x     
-
-# Maven usage
-
-Add the following to your pom.xml to use this artifact:´
-
-```xml
-<dependency>
-  <groupId>com.helger</groupId>
-  <artifactId>ph-xmldsig</artifactId>
-  <version>4.3.0</version>
-</dependency>
-```
 
 ---
 
