@@ -4,18 +4,20 @@ Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apa
 
 # Maven usage
 
-Add the following to your pom.xml to use this artifact:´
+Add the following to your pom.xml to use this artifact, replacing `x.y.z` with the effective version number:
 
 ```xml
 <dependency>
   <groupId>com.helger</groupId>
   <artifactId>ph-xmldsig</artifactId>
-  <version>4.3.1</version>
+  <version>x.y.z</version>
 </dependency>
 ```
 
 # News and noteworthy
 
+* v4.3.2 - 2019-06-05
+    * Updated to xmlsec 2.2.0
 * v4.3.1 - 2019-03-17
     * Updated to xmlsec 2.1.5
 * v4.3.0 - 2019-01-15
