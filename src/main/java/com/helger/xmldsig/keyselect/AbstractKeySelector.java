@@ -48,41 +48,46 @@ public abstract class AbstractKeySelector extends KeySelector
   {
     if (sAlgName.equalsIgnoreCase ("DSA"))
     {
-      return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_DSA) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_DSA_SHA256);
+      if (sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_DSA) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_DSA_SHA256))
+        return true;
     }
     if (sAlgName.equalsIgnoreCase ("RSA"))
     {
-      return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA224) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA224_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA384) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA384_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA512) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA512_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_224_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_256_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_384_MGF1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_512_MGF1);
+      if (sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_RIPEMD160) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA224) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA224_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA384) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA384_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA512) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA512_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_224_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_256_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_384_MGF1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA3_512_MGF1))
+        return true;
     }
     if (sAlgName.equalsIgnoreCase ("EC"))
     {
-      return sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_RIPEMD160) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA1) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA224) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA256) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA384) ||
-             sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA512);
+      if (sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_RIPEMD160) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA1) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA224) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA256) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA384) ||
+          sAlgURI.equalsIgnoreCase (XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SHA512))
+        return true;
     }
 
-    LOGGER.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
-                 sAlgName +
-                 "') and signature algorithm URI ('" +
-                 sAlgURI +
-                 "')");
+    if (LOGGER.isWarnEnabled ())
+      LOGGER.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
+                   sAlgName +
+                   "') and signature algorithm URI ('" +
+                   sAlgURI +
+                   "')");
     return false;
   }
 
