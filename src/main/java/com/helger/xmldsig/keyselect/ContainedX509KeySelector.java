@@ -16,7 +16,6 @@
  */
 package com.helger.xmldsig.keyselect;
 
-import java.io.Serializable;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 
@@ -38,7 +37,7 @@ import com.helger.security.keystore.ConstantKeySelectorResult;
  *
  * @author Philip Helger
  */
-public final class ContainedX509KeySelector extends AbstractKeySelector implements Serializable
+public final class ContainedX509KeySelector extends AbstractKeySelector
 {
   @Override
   @Nonnull
