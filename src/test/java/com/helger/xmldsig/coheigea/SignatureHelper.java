@@ -179,7 +179,7 @@ public final class SignatureHelper
   {
     // Set up the Configuration
     final XMLSecurityProperties properties = new XMLSecurityProperties ();
-    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList<> ();
+    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList <> ();
     actions.add (XMLSecurityConstants.SIGNATURE);
     properties.setActions (actions);
 
@@ -216,7 +216,7 @@ public final class SignatureHelper
   {
     // Set up the Configuration
     final XMLSecurityProperties properties = new XMLSecurityProperties ();
-    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList<> ();
+    final ICommonsList <XMLSecurityConstants.Action> actions = new CommonsArrayList <> ();
     actions.add (XMLSecurityConstants.SIGNATURE);
     properties.setActions (actions);
 
