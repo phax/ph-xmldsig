@@ -17,7 +17,7 @@ Add the following to your pom.xml to use this artifact, replacing `x.y.z` with t
 # News and noteworthy
 
 * v4.4.1 - work in progress
-    * Updated to xmlsec 2.2.2
+    * Updated to xmlsec 2.2.3
 * v4.4.0 - 2021-03-21
     * Updated to ph-commons 10
     * Updated to xmlsec 2.2.1
