@@ -21,7 +21,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +41,6 @@ public final class XMLDSigValidatorTest
 {
   private static final Logger LOGGER = LoggerFactory.getLogger (XMLDSigValidatorTest.class);
 
-  @Ignore
   @Test
   public void testFindAllValidatableFiles ()
   {
@@ -58,7 +56,7 @@ public final class XMLDSigValidatorTest
         try
         {
           if (XMLDSigValidator.validateSignature (aDoc).isValid ())
-            System.out.println ("OK: " + aFile.getAbsolutePath ());
+            LOGGER.info ("OK: " + aFile.getAbsolutePath ());
         }
         catch (final Exception ex)
         {}
