@@ -38,7 +38,7 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
                                                                           "The Apache Software Foundation",
                                                                           ELicense.APACHE2,
                                                                           new Version (2, 3, 1),
-                                                                          "http://santuario.apache.org/");
+                                                                          "https://santuario.apache.org/");
 
   @Nonnull
   public IThirdPartyModule [] getAllThirdPartyModules ()

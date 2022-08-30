@@ -16,7 +16,9 @@ Add the following to your pom.xml to use this artifact, replacing `x.y.z` with t
 
 # News and noteworthy
 
-* v4.4.3 - work in progress
+* v4.4.3 - 2022-08-30
+    * Updated to BouncyCastle 1.71 dependencies
+    * Updated to ph-commons 10.2.0
     * Updated to xmlsec 2.3.1
 * v4.4.2 - 2021-11-19
     * Updated to xmlsec 2.3.0
