@@ -37,7 +37,7 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
   public static final IThirdPartyModule SANTUARIO = new ThirdPartyModule ("Apache Santuario",
                                                                           "The Apache Software Foundation",
                                                                           ELicense.APACHE2,
-                                                                          new Version (2, 3, 1),
+                                                                          new Version (3, 0, 1),
                                                                           "https://santuario.apache.org/");
 
   @Nonnull
