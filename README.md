@@ -16,10 +16,10 @@ Add the following to your pom.xml to use this artifact, replacing `x.y.z` with t
 
 # News and noteworthy
 
-* v5.0.0 - work in progress
+* v5.0.0 - 2023-01-08
     * Using Java 11 as the baseline
     * Updated to ph-commons 11
-    * Updated to xmlsec 3.0.0
+    * Updated to xmlsec 3.0.0 using JAXB 4.0 as the baseline
 * v4.4.3 - 2022-08-30
     * Updated to BouncyCastle 1.71 dependencies
     * Updated to ph-commons 10.2.0
