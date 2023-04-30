@@ -82,12 +82,11 @@ public abstract class AbstractKeySelector extends KeySelector
         return true;
     }
 
-    if (LOGGER.isWarnEnabled ())
-      LOGGER.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
-                   sAlgName +
-                   "') and signature algorithm URI ('" +
-                   sAlgURI +
-                   "')");
+    LOGGER.warn ("Algorithm mismatch between JCA/JCE public key algorithm name ('" +
+                 sAlgName +
+                 "') and signature algorithm URI ('" +
+                 sAlgURI +
+                 "')");
     return false;
   }
 
