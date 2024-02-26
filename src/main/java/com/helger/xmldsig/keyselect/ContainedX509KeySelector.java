@@ -46,9 +46,8 @@ public final class ContainedX509KeySelector extends AbstractKeySelector
                                    @Nonnull final AlgorithmMethod aMethod,
                                    final XMLCryptoContext aContext) throws KeySelectorException
   {
-    for (final Object aKeyInfoElement : aKeyInfo.getContent ())
+    for (final XMLStructure aXMLStructure : aKeyInfo.getContent ())
     {
-      final XMLStructure aXMLStructure = (XMLStructure) aKeyInfoElement;
       if (aXMLStructure instanceof X509Data)
       {
         // We found a certificate
@@ -59,14 +58,15 @@ public final class ContainedX509KeySelector extends AbstractKeySelector
           {
             final X509Certificate aCert = (X509Certificate) aX509Element;
             final PublicKey aPublicKey = aCert.getPublicKey ();
-            // Make sure the algorithm is compatible
-            // with the method.
+
+            // Make sure the algorithm is compatible with the method.
             if (algorithmEquals (aMethod.getAlgorithm (), aPublicKey.getAlgorithm ()))
               return new ConstantKeySelectorResult (aPublicKey);
           }
         }
       }
     }
+
     throw new KeySelectorException ("No key found!");
   }
 }
