@@ -76,7 +76,7 @@ public final class XMLDSigValidatorTest
       LOGGER.info (sPath);
 
       // Read document
-      final Document aDoc = DOMReader.readXMLDOM (new ClassPathResource ("xml-signed/" + sPath));
+      final Document aDoc = DOMReader.readXMLDOM (new ClassPathResource ("external/xml-signed/" + sPath));
       assertNotNull (aDoc);
 
       // Validate the signature
