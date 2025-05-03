@@ -26,8 +26,7 @@ import com.helger.commons.thirdparty.ThirdPartyModule;
 import com.helger.commons.version.Version;
 
 /**
- * Implement this SPI interface if your JAR file contains external third party
- * modules.
+ * Implement this SPI interface if your JAR file contains external third party modules.
  *
  * @author Philip Helger
  */
@@ -37,7 +36,7 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
   public static final IThirdPartyModule SANTUARIO = new ThirdPartyModule ("Apache Santuario",
                                                                           "The Apache Software Foundation",
                                                                           ELicense.APACHE2,
-                                                                          new Version (3, 0, 5),
+                                                                          new Version (3, 0, 6),
                                                                           "https://santuario.apache.org/");
 
   @Nonnull

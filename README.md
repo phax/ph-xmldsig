@@ -16,6 +16,8 @@ Add the following to your pom.xml to use this artifact, replacing `x.y.z` with t
 
 # News and noteworthy
 
+* v5.0.4 - work in progress
+    * Updated to xmlsec 3.0.6
 * v5.0.3 - 2024-11-10
     * Updated to xmlsec 3.0.5
 * v5.0.2 - 2024-02-26
