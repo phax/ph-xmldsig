@@ -16,14 +16,15 @@
  */
 package com.helger.xmldsig.keyselect;
 
-import javax.annotation.Nonnull;
 import javax.xml.crypto.KeySelector;
 
 import org.apache.xml.security.signature.XMLSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.helger.commons.string.ToStringGenerator;
+import com.helger.base.tostring.ToStringGenerator;
+
+import jakarta.annotation.Nonnull;
 
 /**
  * Base class for {@link KeySelector} implementations.

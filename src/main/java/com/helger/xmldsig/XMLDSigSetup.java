@@ -16,11 +16,13 @@
  */
 package com.helger.xmldsig;
 
-import javax.annotation.Nonnull;
-import javax.annotation.concurrent.Immutable;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
+
+import com.helger.annotation.concurrent.Immutable;
+
+import jakarta.annotation.Nonnull;
 
 /**
  * General setup for XMLDSig handling

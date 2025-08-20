@@ -24,7 +24,6 @@ import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Nonnull;
 import javax.xml.crypto.dsig.CanonicalizationMethod;
 import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.namespace.NamespaceContext;
@@ -56,10 +55,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.helger.commons.collection.CollectionHelper;
-import com.helger.commons.collection.impl.CommonsArrayList;
-import com.helger.commons.collection.impl.ICommonsList;
+import com.helger.collection.CollectionFind;
+import com.helger.collection.commons.CommonsArrayList;
+import com.helger.collection.commons.ICommonsList;
 import com.helger.xml.namespace.MapBasedNamespaceContext;
+
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 /**
  * Some utility methods for signing/verifying documents
@@ -84,8 +86,8 @@ public final class SignatureHelper
   }
 
   /*
-   * Sign the document using the DOM API of Apache Santuario - XML Security for
-   * Java. It signs a list of QNames that it finds in the Document via XPath.
+   * Sign the document using the DOM API of Apache Santuario - XML Security for Java. It signs a
+   * list of QNames that it finds in the Document via XPath.
    */
   public static void signUsingDOM (final Document document,
                                    final List <QName> namesToSign,
@@ -132,9 +134,8 @@ public final class SignatureHelper
   }
 
   /*
-   * Verify the document using the DOM API of Apache Santuario - XML Security
-   * for Java. It finds a list of QNames via XPath and uses the DOM API to mark
-   * them as having an "Id".
+   * Verify the document using the DOM API of Apache Santuario - XML Security for Java. It finds a
+   * list of QNames via XPath and uses the DOM API to mark them as having an "Id".
    */
   public static void verifyUsingDOM (final Document document,
                                      final List <QName> namesToSign,
@@ -168,8 +169,7 @@ public final class SignatureHelper
   }
 
   /*
-   * Sign the document using the StAX API of Apache Santuario - XML Security for
-   * Java.
+   * Sign the document using the StAX API of Apache Santuario - XML Security for Java.
    */
   public static ByteArrayOutputStream signUsingStAX (final InputStream inputStream,
                                                      final List <QName> namesToSign,
@@ -206,9 +206,14 @@ public final class SignatureHelper
     return aBAOS;
   }
 
+  @Nullable
+  private static QName _getSignedQName (@Nullable final List <QName> qnames)
+  {
+    return CollectionFind.getLastElement (qnames);
+  }
+
   /*
-   * Verify the document using the StAX API of Apache Santuario - XML Security
-   * for Java.
+   * Verify the document using the StAX API of Apache Santuario - XML Security for Java.
    */
   public static void verifyUsingStAX (final InputStream inputStream,
                                       final List <QName> namesToSign,
@@ -246,7 +251,7 @@ public final class SignatureHelper
       boolean found = false;
       for (final SignedElementSecurityEvent signedElement : signedElementEvents)
       {
-        if (signedElement.isSigned () && nameToSign.equals (getSignedQName (signedElement.getElementPath ())))
+        if (signedElement.isSigned () && nameToSign.equals (_getSignedQName (signedElement.getElementPath ())))
         {
           found = true;
           break;
@@ -262,10 +267,5 @@ public final class SignatureHelper
     Assert.assertTrue (tokenEvent.getSecurityToken () instanceof X509SecurityToken);
     final X509SecurityToken x509SecurityToken = (X509SecurityToken) tokenEvent.getSecurityToken ();
     Assert.assertEquals (x509SecurityToken.getX509Certificates ()[0], cert);
-  }
-
-  private static QName getSignedQName (final List <QName> qnames)
-  {
-    return CollectionHelper.getLastElement (qnames);
   }
 }

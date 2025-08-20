@@ -19,7 +19,6 @@ package com.helger.xmldsig.keyselect;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 
-import javax.annotation.Nonnull;
 import javax.xml.crypto.AlgorithmMethod;
 import javax.xml.crypto.KeySelector;
 import javax.xml.crypto.KeySelectorException;
@@ -30,6 +29,8 @@ import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 
 import com.helger.security.keystore.ConstantKeySelectorResult;
+
+import jakarta.annotation.Nonnull;
 
 /**
  * Simple key selector, using the first {@link X509Certificate} contained in the
