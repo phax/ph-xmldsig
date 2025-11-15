@@ -19,6 +19,8 @@ package com.helger.xmldsig;
 import java.io.Serializable;
 import java.util.List;
 
+import org.jspecify.annotations.NonNull;
+
 import com.helger.annotation.Nonempty;
 import com.helger.annotation.style.ReturnsMutableCopy;
 import com.helger.base.enforce.ValueEnforcer;
@@ -26,8 +28,6 @@ import com.helger.base.state.IValidityIndicator;
 import com.helger.base.tostring.ToStringGenerator;
 import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * This class encapsulates the results of XML DSig validation.
@@ -54,7 +54,7 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
     m_aInvalidReferences = null;
   }
 
-  public XMLDSigValidationResult (@Nonnull @Nonempty final List <Integer> aInvalidReferences)
+  public XMLDSigValidationResult (@NonNull @Nonempty final List <Integer> aInvalidReferences)
   {
     ValueEnforcer.notEmpty (aInvalidReferences, "InvalidReferences");
 
@@ -81,7 +81,7 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
    * @return A list with all invalid reference indices. Never <code>null</code>
    *         but may be empty in case of success.
    */
-  @Nonnull
+  @NonNull
   @ReturnsMutableCopy
   public ICommonsList <Integer> getInvalidReferenceIndices ()
   {
@@ -102,7 +102,7 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
    *
    * @return Result object
    */
-  @Nonnull
+  @NonNull
   public static XMLDSigValidationResult createSuccess ()
   {
     return new XMLDSigValidationResult ();
@@ -115,7 +115,7 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
    *
    * @return Result object
    */
-  @Nonnull
+  @NonNull
   public static XMLDSigValidationResult createSignatureError ()
   {
     return new XMLDSigValidationResult (false);
@@ -130,8 +130,8 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
    *        The indices to the invalid references.
    * @return Result object
    */
-  @Nonnull
-  public static XMLDSigValidationResult createReferenceErrors (@Nonnull @Nonempty final List <Integer> aInvalidReferences)
+  @NonNull
+  public static XMLDSigValidationResult createReferenceErrors (@NonNull @Nonempty final List <Integer> aInvalidReferences)
   {
     return new XMLDSigValidationResult (aInvalidReferences);
   }

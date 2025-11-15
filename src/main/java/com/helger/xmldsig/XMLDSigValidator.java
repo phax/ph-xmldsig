@@ -26,6 +26,7 @@ import javax.xml.crypto.dsig.XMLSignatureException;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.crypto.dsig.dom.DOMValidateContext;
 
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -37,8 +38,6 @@ import com.helger.base.enforce.ValueEnforcer;
 import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
 import com.helger.xmldsig.keyselect.ContainedX509KeySelector;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * Utility class for validating XML DSig within ebInterface documents.
@@ -53,7 +52,7 @@ public final class XMLDSigValidator
   private XMLDSigValidator ()
   {}
 
-  public static boolean containsSignature (@Nonnull final Document aDoc)
+  public static boolean containsSignature (@NonNull final Document aDoc)
   {
     ValueEnforcer.notNull (aDoc, "Document");
 
@@ -61,8 +60,8 @@ public final class XMLDSigValidator
     return aSignatureNL.getLength () > 0;
   }
 
-  @Nonnull
-  public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc) throws XMLSignatureException
+  @NonNull
+  public static XMLDSigValidationResult validateSignature (@NonNull final Document aDoc) throws XMLSignatureException
   {
     ValueEnforcer.notNull (aDoc, "Document");
 
@@ -75,17 +74,17 @@ public final class XMLDSigValidator
     return validateSignature (aDoc, aSignatureElement);
   }
 
-  @Nonnull
-  public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc,
-                                                           @Nonnull final Element aSignatureElement) throws XMLSignatureException
+  @NonNull
+  public static XMLDSigValidationResult validateSignature (@NonNull final Document aDoc,
+                                                           @NonNull final Element aSignatureElement) throws XMLSignatureException
   {
     return validateSignature (aDoc, aSignatureElement, new ContainedX509KeySelector ());
   }
 
-  @Nonnull
-  public static XMLDSigValidationResult validateSignature (@Nonnull final Document aDoc,
-                                                           @Nonnull final Element aSignatureElement,
-                                                           @Nonnull final KeySelector aKeySelector) throws XMLSignatureException
+  @NonNull
+  public static XMLDSigValidationResult validateSignature (@NonNull final Document aDoc,
+                                                           @NonNull final Element aSignatureElement,
+                                                           @NonNull final KeySelector aKeySelector) throws XMLSignatureException
   {
     ValueEnforcer.notNull (aDoc, "Document");
     ValueEnforcer.notNull (aSignatureElement, "SignatureElement");

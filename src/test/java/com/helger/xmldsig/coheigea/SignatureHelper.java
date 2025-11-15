@@ -50,6 +50,8 @@ import org.apache.xml.security.stax.securityEvent.SignedElementSecurityEvent;
 import org.apache.xml.security.stax.securityEvent.X509TokenSecurityEvent;
 import org.apache.xml.security.stax.securityToken.SecurityTokenConstants;
 import org.apache.xml.security.transforms.Transforms;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import org.junit.Assert;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -59,9 +61,6 @@ import com.helger.collection.CollectionFind;
 import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
 import com.helger.xml.namespace.MapBasedNamespaceContext;
-
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 
 /**
  * Some utility methods for signing/verifying documents
@@ -76,7 +75,7 @@ public final class SignatureHelper
   private SignatureHelper ()
   {}
 
-  @Nonnull
+  @NonNull
   private static NamespaceContext _createNamespaceContext ()
   {
     final MapBasedNamespaceContext aNC = new MapBasedNamespaceContext ();

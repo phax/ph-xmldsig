@@ -19,12 +19,11 @@ package com.helger.xmldsig.keyselect;
 import javax.xml.crypto.KeySelector;
 
 import org.apache.xml.security.signature.XMLSignature;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.helger.base.tostring.ToStringGenerator;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * Base class for {@link KeySelector} implementations.
@@ -45,7 +44,7 @@ public abstract class AbstractKeySelector extends KeySelector
    *        The provided algorithm name from a public key.
    * @return <code>true</code> if the name matches the URI.
    */
-  public static boolean algorithmEquals (@Nonnull final String sAlgURI, @Nonnull final String sAlgName)
+  public static boolean algorithmEquals (@NonNull final String sAlgURI, @NonNull final String sAlgName)
   {
     if (sAlgName.equalsIgnoreCase ("DSA"))
     {

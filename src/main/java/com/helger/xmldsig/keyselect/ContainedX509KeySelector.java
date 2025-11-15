@@ -28,9 +28,9 @@ import javax.xml.crypto.XMLStructure;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 
-import com.helger.security.keystore.ConstantKeySelectorResult;
+import org.jspecify.annotations.NonNull;
 
-import jakarta.annotation.Nonnull;
+import com.helger.security.keystore.ConstantKeySelectorResult;
 
 /**
  * Simple key selector, using the first {@link X509Certificate} contained in the
@@ -41,10 +41,10 @@ import jakarta.annotation.Nonnull;
 public final class ContainedX509KeySelector extends AbstractKeySelector
 {
   @Override
-  @Nonnull
-  public KeySelectorResult select (@Nonnull final KeyInfo aKeyInfo,
+  @NonNull
+  public KeySelectorResult select (@NonNull final KeyInfo aKeyInfo,
                                    final KeySelector.Purpose aPurpose,
-                                   @Nonnull final AlgorithmMethod aMethod,
+                                   @NonNull final AlgorithmMethod aMethod,
                                    final XMLCryptoContext aContext) throws KeySelectorException
   {
     for (final XMLStructure aXMLStructure : aKeyInfo.getContent ())

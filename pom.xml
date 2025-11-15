@@ -38,16 +38,19 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  
   <scm>
     <connection>scm:git:https://github.com/phax/ph-xmldsig.git</connection>
     <developerConnection>scm:git:https://github.com/phax/ph-xmldsig.git</developerConnection>
     <url>http://github.com/phax/ph-xmldsig</url>
     <tag>HEAD</tag>
   </scm>
+
   <organization>
     <name>Philip Helger</name>
     <url>http://www.helger.com</url>
   </organization>
+
   <developers>
     <developer>
       <id>philip</id>
@@ -56,12 +59,13 @@
       <url>http://www.helger.com</url>
     </developer>
   </developers>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>com.helger.commons</groupId>
         <artifactId>ph-commons-parent-pom</artifactId>
-        <version>12.0.4</version>
+        <version>12.1.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -72,6 +76,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>com.helger.commons</groupId>
@@ -115,6 +120,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -125,7 +131,7 @@
           <instructions>
             <Automatic-Module-Name>com.helger.xmldsig</Automatic-Module-Name>
             <Export-Package>com.helger.xmldsig.*</Export-Package>
-            <Import-Package>!jakarta.annotation.*,*</Import-Package>
+            <Import-Package>!org.jspecify.annotations.*,*</Import-Package>
             <Require-Capability>osgi.extender; filter:="(osgi.extender=osgi.serviceloader.registrar)"</Require-Capability>
             <Provide-Capability>osgi.serviceloader; osgi.serviceloader=com.helger.base.thirdparty.IThirdPartyModuleProviderSPI</Provide-Capability>
           </instructions>

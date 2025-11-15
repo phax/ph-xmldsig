@@ -19,10 +19,9 @@ package com.helger.xmldsig;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
+import org.jspecify.annotations.NonNull;
 
 import com.helger.annotation.concurrent.Immutable;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * General setup for XMLDSig handling
@@ -43,7 +42,7 @@ public final class XMLDSigSetup
   private XMLDSigSetup ()
   {}
 
-  @Nonnull
+  @NonNull
   public static XMLSignatureFactory getXMLSignatureFactory ()
   {
     return XMLSignatureFactory.getInstance ("DOM", new XMLDSigRI ());

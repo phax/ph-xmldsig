@@ -16,14 +16,14 @@
  */
 package com.helger.xmldsig.config;
 
+import org.jspecify.annotations.NonNull;
+
 import com.helger.annotation.style.IsSPIImplementation;
 import com.helger.base.thirdparty.ELicense;
 import com.helger.base.thirdparty.IThirdPartyModule;
 import com.helger.base.thirdparty.IThirdPartyModuleProviderSPI;
 import com.helger.base.thirdparty.ThirdPartyModule;
 import com.helger.base.version.Version;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * Implement this SPI interface if your JAR file contains external third party modules.
@@ -39,7 +39,7 @@ public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyMod
                                                                           new Version (4, 0, 4),
                                                                           "https://santuario.apache.org/");
 
-  @Nonnull
+  @NonNull
   public IThirdPartyModule [] getAllThirdPartyModules ()
   {
     return new IThirdPartyModule [] { SANTUARIO };

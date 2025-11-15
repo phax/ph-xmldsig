@@ -40,6 +40,8 @@ import javax.xml.crypto.dsig.spec.DigestMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.SignatureMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -49,9 +51,6 @@ import com.helger.annotation.style.ReturnsMutableCopy;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
-
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 
 /**
  * Utility class for applying a signature to ebInterface documents.
@@ -72,7 +71,7 @@ public class XMLDSigCreator
     m_aSignatureFactory = XMLDSigSetup.getXMLSignatureFactory ();
   }
 
-  @Nonnull
+  @NonNull
   public final XMLSignatureFactory getSignatureFactory ()
   {
     return m_aSignatureFactory;
@@ -86,35 +85,35 @@ public class XMLDSigCreator
     return "";
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected String getDigestMethod () throws Exception
   {
     return DigestMethod.SHA1;
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected DigestMethod createDigestMethod () throws Exception
   {
     return m_aSignatureFactory.newDigestMethod (getDigestMethod (), (DigestMethodParameterSpec) null);
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected String getDefaultTransform () throws Exception
   {
     return Transform.ENVELOPED;
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected Transform createDefaultTransform () throws Exception
   {
     return m_aSignatureFactory.newTransform (getDefaultTransform (), (TransformParameterSpec) null);
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected List <Transform> createTransformList () throws Exception
   {
@@ -135,7 +134,7 @@ public class XMLDSigCreator
     return null;
   }
 
-  @Nonnull
+  @NonNull
   @ReturnsMutableCopy
   protected Reference createDefaultReference () throws Exception
   {
@@ -149,7 +148,7 @@ public class XMLDSigCreator
                                              getDefaultReferenceID ());
   }
 
-  @Nonnull
+  @NonNull
   @ReturnsMutableCopy
   protected ICommonsList <Reference> createReferenceList () throws Exception
   {
@@ -158,35 +157,35 @@ public class XMLDSigCreator
     return ret;
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected String getCanonicalizationMethod () throws Exception
   {
     return CanonicalizationMethod.INCLUSIVE_WITH_COMMENTS;
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected CanonicalizationMethod createCanonicalizationMethod () throws Exception
   {
     return m_aSignatureFactory.newCanonicalizationMethod (getCanonicalizationMethod (), (C14NMethodParameterSpec) null);
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected String getSignatureMethod () throws Exception
   {
     return SignatureMethod.RSA_SHA1;
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
   protected SignatureMethod createSignatureMethod () throws Exception
   {
     return m_aSignatureFactory.newSignatureMethod (getSignatureMethod (), (SignatureMethodParameterSpec) null);
   }
 
-  @Nonnull
+  @NonNull
   public SignedInfo createSignedInfo () throws Exception
   {
     // Create the SignedInfo.
@@ -195,8 +194,8 @@ public class XMLDSigCreator
                                               createReferenceList ());
   }
 
-  @Nonnull
-  public KeyInfo createKeyInfo (@Nonnull final X509Certificate aCertificate) throws KeyException
+  @NonNull
+  public KeyInfo createKeyInfo (@NonNull final X509Certificate aCertificate) throws KeyException
   {
     // Create the KeyInfo containing the X509Data.
     final KeyInfoFactory aKeyInfoFactory = m_aSignatureFactory.getKeyInfoFactory ();
@@ -214,16 +213,16 @@ public class XMLDSigCreator
     return aKeyInfoFactory.newKeyInfo (new CommonsArrayList <> (aX509Data, aKeyValue));
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
-  public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate) throws Exception
+  public XMLSignature createXMLSignature (@NonNull final X509Certificate aCertificate) throws Exception
   {
     return createXMLSignature (aCertificate, null, null, null);
   }
 
-  @Nonnull
+  @NonNull
   @OverrideOnDemand
-  public XMLSignature createXMLSignature (@Nonnull final X509Certificate aCertificate,
+  public XMLSignature createXMLSignature (@NonNull final X509Certificate aCertificate,
                                           @Nullable final List <? extends XMLObject> aObjects,
                                           @Nullable final String sID,
                                           @Nullable final String sSignatureValueID) throws Exception
@@ -255,9 +254,9 @@ public class XMLDSigCreator
    *         In case something goes wrong
    * @see #createXMLSignature(X509Certificate)
    */
-  public void applyXMLDSigAsFirstChild (@Nonnull final PrivateKey aPrivateKey,
-                                        @Nonnull final X509Certificate aCertificate,
-                                        @Nonnull final Document aDocument) throws Exception
+  public void applyXMLDSigAsFirstChild (@NonNull final PrivateKey aPrivateKey,
+                                        @NonNull final X509Certificate aCertificate,
+                                        @NonNull final Document aDocument) throws Exception
   {
     ValueEnforcer.notNull (aPrivateKey, "privateKey");
     ValueEnforcer.notNull (aCertificate, "certificate");

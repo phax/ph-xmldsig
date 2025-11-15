@@ -37,6 +37,7 @@ import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.cert.jcajce.JcaX509v1CertificateBuilder;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +49,6 @@ import com.helger.io.file.FileSystemRecursiveIterator;
 import com.helger.io.file.IFileFilter;
 import com.helger.xml.serialize.read.DOMReader;
 import com.helger.xml.serialize.write.XMLWriter;
-
-import jakarta.annotation.Nonnull;
 
 /**
  * Test class for class {@link XMLDSigCreator}
@@ -67,8 +66,8 @@ public final class XMLDSigCreatorTest
    *        KeyPair to use. May not be <code>null</code>.
    * @return A {@link X509Certificate} for further usage
    */
-  @Nonnull
-  private X509Certificate _createCert (@Nonnull final KeyPair kp) throws Exception
+  @NonNull
+  private X509Certificate _createCert (@NonNull final KeyPair kp) throws Exception
   {
     final PublicKey aPublicKey = kp.getPublic ();
     final PrivateKey aPrivateKey = kp.getPrivate ();
