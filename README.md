@@ -1,5 +1,10 @@
 # ph-xmldsig
 
+<!-- ph-badge-start -->
+[![Sonatype Central](https://maven-badges.sml.io/sonatype-central/com.helger/ph-xmldsig/badge.svg)](https://maven-badges.sml.io/sonatype-central/com.helger/ph-xmldsig/)
+[![javadoc](https://javadoc.io/badge2/com.helger/ph-xmldsig/javadoc.svg)](https://javadoc.io/doc/com.helger/ph-xmldsig)
+<!-- ph-badge-end -->
+
 Small wrapper around XMLDsig stuff using [Apache Santuario](http://santuario.apache.org/).
 
 # Maven usage
