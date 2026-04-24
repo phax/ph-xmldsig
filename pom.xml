@@ -26,7 +26,7 @@
   </parent>
   <artifactId>ph-xmldsig</artifactId>
   <version>6.1.1-SNAPSHOT</version>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>ph-xmldsig</name>
   <description>Wrapper library to handle XMLDsig more easily</description>
   <url>https://github.com/phax/ph-xmldsig</url>
@@ -38,19 +38,16 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
   <scm>
     <connection>scm:git:https://github.com/phax/ph-xmldsig.git</connection>
     <developerConnection>scm:git:https://github.com/phax/ph-xmldsig.git</developerConnection>
     <url>http://github.com/phax/ph-xmldsig</url>
     <tag>HEAD</tag>
   </scm>
-
   <organization>
     <name>Philip Helger</name>
     <url>http://www.helger.com</url>
   </organization>
-
   <developers>
     <developer>
       <id>philip</id>
@@ -59,7 +56,6 @@
       <url>http://www.helger.com</url>
     </developer>
   </developers>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -76,7 +72,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>com.helger.commons</groupId>
@@ -120,23 +115,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Automatic-Module-Name>com.helger.xmldsig</Automatic-Module-Name>
-            <Export-Package>com.helger.xmldsig.*</Export-Package>
-            <Import-Package>!org.jspecify.annotations.*,*</Import-Package>
-            <Require-Capability>osgi.extender; filter:="(osgi.extender=osgi.serviceloader.registrar)"</Require-Capability>
-            <Provide-Capability>osgi.serviceloader; osgi.serviceloader=com.helger.base.thirdparty.IThirdPartyModuleProviderSPI</Provide-Capability>
-          </instructions>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
