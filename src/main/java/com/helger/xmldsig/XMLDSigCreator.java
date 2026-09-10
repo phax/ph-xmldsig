@@ -202,8 +202,7 @@ public class XMLDSigCreator
 
     // The X509 certificate subject name and the certificate itself
     final ICommonsList <Object> aX509Content = new CommonsArrayList <> (aCertificate.getSubjectX500Principal ()
-                                                                                    .getName (),
-                                                                        aCertificate);
+                                                                                    .getName (), aCertificate);
     final X509Data aX509Data = aKeyInfoFactory.newX509Data (aX509Content);
 
     // The public key itself
@@ -247,9 +246,9 @@ public class XMLDSigCreator
    * @param aCertificate
    *        The certificate to be used. May not be <code>null</code>.
    * @param aDocument
-   *        The document to be signed. The signature will always be the first
-   *        child element of the document element. The document may not contains
-   *        any disg:Signature element. This element is inserted manually.
+   *        The document to be signed. The signature will always be the first child element of the
+   *        document element. The document may not contains any disg:Signature element. This element
+   *        is inserted manually.
    * @throws Exception
    *         In case something goes wrong
    * @see #createXMLSignature(X509Certificate)

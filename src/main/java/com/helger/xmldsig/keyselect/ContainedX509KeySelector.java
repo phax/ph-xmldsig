@@ -33,8 +33,8 @@ import org.jspecify.annotations.NonNull;
 import com.helger.security.keystore.ConstantKeySelectorResult;
 
 /**
- * Simple key selector, using the first {@link X509Certificate} contained in the
- * signature to be verified.
+ * Simple key selector, using the first {@link X509Certificate} contained in the signature to be
+ * verified.
  *
  * @author Philip Helger
  */

@@ -69,8 +69,7 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
   }
 
   /**
-   * @return May only be <code>false</code> , if the overall validity is
-   *         <code>false</code>
+   * @return May only be <code>false</code> , if the overall validity is <code>false</code>
    */
   public boolean isSignatureValid ()
   {
@@ -78,8 +77,8 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
   }
 
   /**
-   * @return A list with all invalid reference indices. Never <code>null</code>
-   *         but may be empty in case of success.
+   * @return A list with all invalid reference indices. Never <code>null</code> but may be empty in
+   *         case of success.
    */
   @NonNull
   @ReturnsMutableCopy
@@ -109,9 +108,9 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
   }
 
   /**
-   * An invalid signature. The cryptographic verification of the signature
-   * failed. This can be caused by an incorrect validation key or a change to
-   * the SignedInfo contents since the signature was generated.
+   * An invalid signature. The cryptographic verification of the signature failed. This can be
+   * caused by an incorrect validation key or a change to the SignedInfo contents since the
+   * signature was generated.
    *
    * @return Result object
    */
@@ -122,9 +121,8 @@ public class XMLDSigValidationResult implements IValidityIndicator, Serializable
   }
 
   /**
-   * An invalid reference or references. The verification of the digest of a
-   * reference failed. This can be caused by a change to the referenced data
-   * since the signature was generated.
+   * An invalid reference or references. The verification of the digest of a reference failed. This
+   * can be caused by a change to the referenced data since the signature was generated.
    *
    * @param aInvalidReferences
    *        The indices to the invalid references.

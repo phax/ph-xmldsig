@@ -35,8 +35,8 @@ public abstract class AbstractKeySelector extends KeySelector
   private static final Logger LOGGER = LoggerFactory.getLogger (AbstractKeySelector.class);
 
   /**
-   * Checks if a JCA/JCE public key algorithm name is compatible with the
-   * specified signature algorithm URI.
+   * Checks if a JCA/JCE public key algorithm name is compatible with the specified signature
+   * algorithm URI.
    *
    * @param sAlgURI
    *        The requested algorithm URI.
