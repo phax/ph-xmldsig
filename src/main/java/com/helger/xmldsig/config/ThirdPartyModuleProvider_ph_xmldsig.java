@@ -33,11 +33,13 @@ import com.helger.base.version.Version;
 @IsSPIImplementation
 public final class ThirdPartyModuleProvider_ph_xmldsig implements IThirdPartyModuleProviderSPI
 {
-  public static final IThirdPartyModule SANTUARIO = new ThirdPartyModule ("Apache Santuario",
-                                                                          "The Apache Software Foundation",
-                                                                          ELicense.APACHE2,
-                                                                          new Version (4, 0, 4),
-                                                                          "https://santuario.apache.org/");
+  public static final IThirdPartyModule SANTUARIO = ThirdPartyModule.builder ()
+                                                                    .displayName ("Apache Santuario")
+                                                                    .copyrightOwner ("The Apache Software Foundation")
+                                                                    .license (ELicense.APACHE2)
+                                                                    .version (new Version (4, 0, 4))
+                                                                    .webSiteUrl ("https://santuario.apache.org/")
+                                                                    .build ();
 
   @NonNull
   public IThirdPartyModule [] getAllThirdPartyModules ()

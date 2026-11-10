@@ -24,6 +24,7 @@ Add the following to your pom.xml to use this artifact, replacing `x.y.z` with t
 # News and noteworthy
 
 v6.1.1 - work in progress
+* Requires at least ph-commons 12.6.0
 * Removed OSGI bundling
 
 v6.1.0 - 2025-11-16
